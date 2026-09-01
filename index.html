@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>قهوة القنطرة | Cafe AL_Qantara</title>
+<meta name="description" content="في القنطرة، القهوة مو بس مشروب… هي جلسة وذكرى. قهوة ذكريات منذ عام 2025.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg: #140d09;
+  --card: #22160f;
+  --gold: #d7a45b;
+  --gold-hover: #f0be75;
+  --cream: #f5e8ce;
+  --muted: #cdbfa9;
+  --line: #4a331e;
+}
+
+* { box-sizing: border-box; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #2c1a0e 0, #140d09 60%);
+  color: var(--cream);
+  font-family: Cairo, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.wrap {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Navbar */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(20, 13, 9, 0.93);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  padding: 15px 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-family: Amiri, serif;
+  font-size: 26px;
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+/* Hero Section with Cafe Background */
+.hero {
+  min-height: 80vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 50px 20px;
+  /* خلفية الصورة الخاصة بالكافيه مع طبقة تظليل لضمان قراءة النصوص */
+  background: linear-gradient(rgba(20, 13, 9, 0.75), rgba(20, 13, 9, 0.85)), 
+              url('1000216601.jpg') center/cover no-repeat;
+  border-radius: 0 0 30px 30px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-card {
+  background: rgba(34, 22, 15, 0.85);
+  border: 1px solid #6e4b29;
+  border-radius: 28px;
+  padding: 35px 20px;
+  box-shadow: 0 20px 70px #0009;
+  max-width: 750px;
+  width: 100%;
+  backdrop-filter: blur(5px);
+}
+
+/* Logo with Image */
+.logo-container {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 0 6px #140d09, 0 10px 30px rgba(0,0,0,0.8);
+  overflow: hidden;
+  background: #20130b;
+}
+
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  font-family: Amiri, serif;
+  font-size: clamp(34px, 5vw, 54px);
+  margin: 10px 0 5px;
+  color: #e8bf7c;
+}
+
+.slogan {
+  font-family: Amiri, serif;
+  font-size: 22px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.tag { font-size: 16px; color: var(--muted); margin-bottom: 25px; }
+
+.actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .3s ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.primary { background: var(--gold); color: #20130b; }
+.primary:hover { background: var(--gold-hover); }
+.ghost { background: transparent; color: var(--cream); }
+.ghost:hover { background: rgba(215, 164, 91, 0.1); }
+
+/* Section Headers */
+.section-head { text-align: center; padding: 45px 0 20px; }
+.section-head .eyebrow { letter-spacing: 3px; font-size: 13px; color: var(--gold); }
+.section-head h2 { font-family: Amiri, serif; font-size: clamp(28px, 4vw, 40px); margin: 5px 0; color: #e7bd78; }
+
+/* Menu Accordion */
+.categories { display: grid; gap: 15px; }
+
+.category {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #281a11, #1a100a);
+}
+
+.category-head {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--cream);
+  display: grid;
+  grid-template-columns: 45px 1fr auto 30px;
+  align-items: center;
+  gap: 12px;
+  text-align: right;
+  padding: 16px 20px;
+  cursor: pointer;
+  font-family: inherit;
+}.category-icon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #8a6136;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #120b07;
+  font-size: 20px;
+}
+
+.category-title { font-family: Amiri, serif; font-size: 22px; color: #e7bd78; }
+.category-count { font-size: 13px; color: var(--muted); }
+.plus { font-size: 22px; color: var(--gold); transition: transform .3s ease; }
+
+.category.open .plus { transform: rotate(45deg); }
+
+.category-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .4s cubic-bezier(.2, .8, .2, 1);
+}
+
+.category.open .category-body { grid-template-rows: 1fr; }
+.category-body > div { overflow: hidden; }
+
+.items {
+  padding: 0 18px 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.item-card {
+  border: 1px solid #4e3826;
+  background: #160f0b;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+
+.item-card .price { color: var(--gold); font-weight: bold; }
+
+/* Grid Sections */
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 25px;
+  text-align: center;
+}
+
+.card-item h3 { font-family: Amiri, serif; color: var(--gold); font-size: 22px; margin-top: 0; }
+
+/* Booking Form */
+.booking-form {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.form-group { margin-bottom: 18px; text-align: right; }
+.form-group label { display: block; margin-bottom: 6px; font-size: 14px; color: var(--muted); }
+.form-control {
+  width: 100%;
+  padding: 12px;
+  background: #140d09;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--cream);
+  font-family: inherit;
+}
+.form-control:focus { outline: none; border-color: var(--gold); }
+
+footer { text-align: center; color: var(--muted); padding: 40px 0; border-top: 1px solid var(--line); margin-top: 60px; }
+
+@media(max-width: 768px) {
+  .nav-links { display: none; }
+  .items { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="wrap nav-container">
+    <div class="brand">قهوة القنطرة</div>
+    <ul class="nav-links">
+      <li><a href="#menu">المنيو</a></li>
+      <li><a href="#about">عن القهوة</a></li>
+      <li><a href="#booking">حجز طاولة</a></li>
+      <li><a href="#contact">الموقع والتواصل</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero Section with Background & Logo -->
+<section class="hero">
+  <div class="hero-card">
+    <div class="logo-container">
+      <img src="1000216576.jpg" alt="لوغو قهوة القنطرة">
+    </div>
+    <h1>قهوة القنطرة</h1>
+    <div class="slogan">«هنا القعدة الصح»</div>
+    <p class="tag">«في القنطرة، القهوة مو بس مشروب… هي جلسة وذكرى.»</p>
+    <div class="actions">
+      <a href="#menu" class="btn primary">📜 تصفح المنيو</a>
+      <a href="tel:0986629779" class="btn ghost">📞 0986629779</a>
+      <a href="https://maps.app.goo.gl/g2wsuRepbEL9x7TJA?g_st=ac" target="_blank" class="btn ghost">📍 موقعنا</a>
+      <a href="https://www.instagram.com/cafe_al_qantara?igsi=MTQ2bmNrcjZrbTk2ZQ==" target="_blank" class="btn ghost">📸 إنستغرام</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <!-- Interactive Menu Section -->
+  <section id="menu">
+    <div class="section-head">
+      <span class="eyebrow">OUR MENU</span>
+      <h2>قائمة الطلبات</h2>
+    </div>
+
+    <div class="categories">
+
+      <!-- مشروبات ساخنة -->
+      <div class="category open">
+        <button class="category-head" onclick="toggleCategory(this)">
+          <div class="category-icon">☕</div>
+          <div class="category-title">مشروبات ساخنة</div>
+          <div class="category-count">13 صنف</div>
+          <div class="plus">+</div>
+        </button>
+        <div class="category-body">
+          <div>
+            <div class="items">
+              <div class="item-card"><span>قهوة تركي</span></div>
+              <div class="item-card"><span>نسكافيه</span></div>
+              <div class="item-card"><span>نسكافيه غولد</span></div>
+              <div class="item-card"><span>كبشينو</span></div>
+              <div class="item-card"><span>3x1</span></div>
+              <div class="item-card"><span>2x1</span></div>
+              <div class="item-card"><span>هوت شوكليت</span></div>
+              <div class="item-card"><span>اسبريسو سينغل</span></div>
+              <div class="item-card"><span>اسبريسو لونغو</span></div>
+              <div class="item-card"><span>شاي</span></div>
+              <div class="item-card"><span>شاي أخضر</span></div>
+              <div class="item-card"><span>شاي ضمير</span></div>
+              <div class="item-card"><span>زهورات</span></div>
+              <div class="item-card"><span>كمون و ليمون</span></div>
+              <div class="item-card"><span>مته</span></div>
+              <div class="item-card"><span>مته حليب</span></div>
+              <div class="item-card"><span>مته عسل</span></div>
+              <div class="item-card"><span>مته زهورات</span></div>
+              <div class="item-card"><span>بابونج</span></div>
+              <div class="item-card"><span>شاي كرك</span></div>
+              <div class="item-card"><span>نسكافيه مع مبيض</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ميلك شيك -->
+      <div class="category">
+        <button class="category-head" onclick="toggleCategory(this)">
+          <div class="category-icon">🥤</div>
+          <div class="category-title">ميلك شيك</div>
+          <div class="category-count">9 أصناف</div>
+          <div class="plus">+</div>
+        </button>
+        <div class="category-body">
+          <div>
+            <div class="items">
+              <div class="item-card"><span>أوريو</span></div>
+              <div class="item-card"><span>نوتيلا</span></div>
+              <div class="item-card"><span>فانيليا</span></div>
+              <div class="item-card"><span>نسكافيه</span></div>
+              <div class="item-card"><span>فريز</span></div>
+              <div class="item-card"><span>بستاشيو</span></div>
+              <div class="item-card"><span>لوتس</span></div>
+              <div class="item-card"><span>كافيه كافي</span></div>
+              <div class="item-card"><span>كراميل</span></div>
+              <div class="item-card"><span>موز</span></div>
+              <div class="item-card"><span>القنطرة</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- كوكتيلات -->
+      <div class="category">
+        <button class="category-head" onclick="toggleCategory(this)">
+          <div class="category-icon">🍹</div>
+          <div class="category-title">كوكتيلات</div>
+          <div class="category-count">8 أصناف</div>
+          <div class="plus">+</div>
+        </button>
+        <div class="category-body">
+          <div>
+            <div class="items">
+              <div class="item-card"><span>موز و حليب</span></div>
+              <div class="item-card"><span>موز و حليب و فريز</span></div>
+              <div class="item-card"><span>فواكه</span></div>
+              <div class="item-card"><span>موز و حليب وشوكيلا</span></div>
+              <div class="item-card"><span>موز و حليب وعسل</span></div>
+              <div class="item-card"><span>موز و حليب ومكسرات</span></div>
+              <div class="item-card"><span>حليب و قرفة و عسل</span></div>
+              <div class="item-card"><span>حليب و فريز</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- عصائر -->
+      <div class="category">
+        <button class="category-head" onclick="toggleCategory(this)">
+          <div class="category-icon">🍊</div>
+          <div class="category-title">عصائر</div>
+          <div class="category-count">16 صنف</div>
+          <div class="plus">+</div>
+        </button>
+        <div class="category-body">
+          <div>
+            <div class="items">
+              <div class="item-card"><span>فريز</span></div>
+              <div class="item-card"><span>برتقال</span></div>
+              <div class="item-card"><span>ليموناضة</span></div>
+              <div class="item-card"><span>بولو</span></div>
+              <div class="item-card"><span>موهيتو</span></div>
+              <div class="item-card"><span>بلو هاواي</span></div>
+              <div class="item-card"><span>بلاك بيري</span></div>
+              <div class="item-card"><span>سفن مع غراندين</span></div>
+              <div class="item-card"><span>جاك مع ليمون</span></div>
+              <div class="item-card"><span>أناناس</span></div>
+              <div class="item-card"><span>مانجو</span></div>
+              <div class="item-card"><span>رمان</span></div>
+              <div class="item-card"><span>بولو مالح</span></div>
+              <div class="item-card"><span>موهيتو بطيخ</span></div>
+              <div class="item-card"><span>موهيتو علكة</span></div>
+              <div class="item-card"><span>بايسن</span></div>
+              <div class="item-card"><span>ريد بول</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- مشروبات غربية -->
+      <div class="category">
+        <button class="category-head" onclick="toggleCategory(this)">
+          <div class="category-icon">🧊</div>
+          <div class="category-title">مشروبات غربية</div>
+          <div class="category-count">5 أصناف</div>
+          <div class="plus">+</div>
+        </button>
+        <div class="category-body">
+          <div>
+            <div class="items">
+              <div class="item-card"><span>أمريكانو</span></div>
+              <div class="item-card"><span>فربتشينو</span></div>
+              <div class="item-card"><span>آيس كوفي لاتيه</span></div>
+              <div class="item-card"><span>آيس موكا</span></div>
+              <div class="item-card"><span>آيس كوفي</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- حلويات -->
+      <div class="category">
+        <button class="category-head" onclick="toggleCategory(this)">
+          <div class="category-icon">🧇</div>
+          <div class="category-title">حلويات</div>
+          <div class="category-count">18 صنف</div>
+          <div class="plus">+</div>
+        </button>
+        <div class="category-body">
+          <div>
+            <div class="items">
+              <div class="item-card"><span>كريب نوتيلا</span></div>
+              <div class="item-card"><span>بان كيك</span></div>
+              <div class="item-card"><span>تشيز كيك</span></div>
+              <div class="item-card"><span>تشيز كيك فريز</span></div>
+              <div class="item-card"><span>تشيز كيك كيوي</span></div>
+              <div class="item-card"><span>تشيز كيك موز</span></div>
+              <div class="item-card"><span>تشيز كيك نوتيلا</span></div>
+              <div class="item-card"><span>تشيز كيك لوتس</span></div>
+              <div class="item-card"><span>تشيز كيك بستاشيو</span></div>
+              <div class="item-card"><span>تشيز كيك أوريو</span></div>
+              <div class="item-card"><span>تشيز كيك قنطرة</span></div>
+              <div class="item-card"><span>كريب قشطة</span></div>
+              <div class="item-card"><span>كريب فواكه</span></div>
+              <div class="item-card"><span>كريب ني فيتشي</span></div>
+              <div class="item-card"><span>كريب سوتي</span></div>
+              <div class="item-card"><span>كريب قنطرة</span></div>
+              <div class="item-card"><span>كريب لوتس</span></div>
+              <div class="item-card"><span>كريب أوريو</span></div>
+              <div class="item-card"><span>براونيز نوتيلا</span></div>
+              <div class="item-card"><span>براونيز قشطة</span></div>
+              <div class="item-card"><span>براونيز فواكه</span></div>
+              <div class="item-card"><span>طاجن فواكه</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- سلطات -->
+      <div class="category">
+        <button class="category-head" onclick="toggleCategory(this)">
+          <div class="category-icon">🥗</div>
+          <div class="category-title">سلطات فواكه</div>
+          <div class="category-count">5 أصناف</div>
+          <div class="plus">+</div>
+        </button>
+        <div class="category-body">
+          <div>
+            <div class="items">
+              <div class="item-card"><span>سلطة نوتيلا</span></div>
+              <div class="item-card"><span>قنة</span></div>
+              <div class="item-card"><span>مكسرات و عسل</span></div>
+              <div class="item-card"><span>بنانشو</span></div>
+              <div class="item-card"><span>لوتس</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- بوظة -->
+      <div class="category">
+        <button class="category-head" onclick="toggleCategory(this)">
+          <div class="category-icon">🍨</div>
+          <div class="category-title">بوظة</div>
+          <div class="category-count">6 أصناف</div>
+          <div class="plus">+</div>
+        </button>
+        <div class="category-body">
+          <div>
+            <div class="items">
+              <div class="item-card"><span>بوظة نوتيلا</span></div>
+              <div class="item-card"><span>كورن فليكس</span></div>
+              <div class="item-card"><span>بوظة مشكلة</span></div>
+              <div class="item-card"><span>فريز</span></div>
+              <div class="item-card"><span>أوريو</span></div>
+              <div class="item-card"><span>حليب</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- أراكيل -->
+      <div class="category">
+        <button class="category-head" onclick="toggleCategory(this)">
+          <div class="category-icon">💨</div>
+          <div class="category-title">أراكيل</div>
+          <div class="category-count">9 أصناف</div>
+          <div class="plus">+</div>
+        </button>
+        <div class="category-body">
+          <div>
+            <div class="items">
+              <div class="item-card"><span>أركيلة فاخر</span></div>
+              <div class="item-card"><span>أركيلة نخلة ML</span></div>
+              <div class="item-card"><span>أركيلة LOVE</span></div>
+              <div class="item-card"><span>أركيلة بولو</span></div>
+              <div class="item-card"><span>أركيلة عنب</span></div>
+              <div class="item-card"><span>أركيلة علكة</span></div>
+              <div class="item-card"><span>أركيلة نعنع</span></div>
+              <div class="item-card"><span>أركيلة إكسترا نخلة</span></div>
+              <div class="item-card"><span>أركيلة إكسترا نخلة ML</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- قفل وكريات -->
+      <div class="category">
+        <button class="category-head" onclick="toggleCategory(this)">
+          <div class="category-icon">🔒</div>
+          <div class="category-title">قفل وذكريات</div>
+          <div class="category-count">4 أحجام</div>
+          <div class="plus">+</div>
+        </button>
+        <div class="category-body">
+          <div>
+            <div class="items">
+              <div class="item-card"><span>كبير</span> <span class="price">45,000</span></div>
+              <div class="item-card"><span>وسط</span> <span class="price">40,000</span></div>
+              <div class="item-card"><span>صغير</span> <span class="price">35,000</span></div>
+              <div class="item-card"><span>ميني</span> <span class="price">30,000</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="section-head">
+      <span class="eyebrow">ABOUT US</span>
+      <h2>عن قهوة القنطرة</h2>
+    </div>
+    <div class="grid-cards">
+      <div class="card-item">
+        <h3>🏛️ الأجواء والذكريات</h3>
+        <p>تصميم شرقي حجري دافئ يعود بك للزمن الجميل، مع بحرة تقليدية وجلسات مريحة صنعت لتكون ملتقى الأحبة والصداقات.</p>
+      </div>
+      <div class="card-item">
+        <h3>☕ القهوة والمشروبات</h3>
+        <p>نقدم أجود أنواع القهوة، المشروبات الساخنة والباردة، الحلويات والأراكيل المميزة المصنوعة بكل حب لتكتمل بها جلساتكم.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Form Section -->
+  <section id="booking">
+    <div class="section-head">
+      <span class="eyebrow">RESERVATION</span>
+      <h2>حجز طاولة</h2>
+    </div>
+    <div class="booking-form">
+      <form onsubmit="handleBooking(event)">
+        <div class="form-group">
+          <label>الاسم الكامل</label>
+          <input type="text" class="form-control" placeholder="أدخل اسمك" required>
+        </div>
+        <div class="form-group">
+          <label>رقم الهاتف</label>
+          <input type="tel" class="form-control" value="0986629779" required>
+        </div>
+        <div class="form-group">
+          <label>عدد الأشخاص</label>
+          <input type="number" min="1" max="20" class="form-control" value="2" required>
+        </div>
+        <div class="form-group">
+          <label>التاريخ والوقت</label>
+          <input type="datetime-local" class="form-control" required>
+        </div>
+        <button type="submit" class="btn primary" style="width: 100%;">تأكيد الحجز عبر الهاتف</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="section-head">
+      <span class="eyebrow">LOCATION & CONTACT</span>
+      <h2>التواصل والموقع</h2>
+    </div>
+    <div class="grid-cards">
+      <div class="card-item">
+        <h3>📍 موقعنا</h3>
+        <p>يمكنك الوصول إلينا بسهولة عبر خرائط جوجل:</p>
+        <a href="https://maps.app.goo.gl/g2wsuRepbEL9x7TJA?g_st=ac" target="_blank" class="btn primary" style="margin-top: 10px;">موقعنا على الخريطة</a>
+      </div>
+      <div class="card-item">
+        <h3>📞 الاتصال والحجز</h3>
+        <p>رقم الهاتف: <strong>0986629779</strong></p>
+        <a href="https://www.instagram.com/cafe_al_qantara?igsi=MTQ2bmNrcjZrbTk2ZQ==" target="_blank" class="btn ghost" style="margin-top: 10px;">تابعنا على إنستغرام</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 - 2026 قهوة القنطرة (Cafe AL_Qantara) - جميع الحقوق محفوظة</p>
+  </footer>
+</div>
+
+<script>
+function toggleCategory(button) {
+  const category = button.parentElement;
+  category.classList.toggle('open');
+}
+
+function handleBooking(event) {
+  event.preventDefault();
+  alert('تم تسجيل طلب الحجز! يمكنك التواصل المباشر على الرقم 0986629779 لتأكيد الطاولة.');
+}
+</script>
+
+</body>
+</html>
