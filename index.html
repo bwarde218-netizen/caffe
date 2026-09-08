@@ -5,424 +5,402 @@
 <meta charset="utf-8">
 
 <meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
 <title>قهوة القنطرة | Cafe AL_Qantara</title>
 
 <meta name="description"
-      content="في القنطرة، القهوة مو بس مشروب… هي جلسة وذكرى. قهوة ذكريات منذ عام 2025.">
+content="في القنطرة، القهوة مو بس مشروب… هي جلسة وذكرى. قهوة ذكريات منذ عام 2025.">
 
-<!-- AOS -->
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&display=swap');
 
-
-/* =========================================================
-   الألوان
-========================================================= */
-
 :root {
 
   --bg-day:
-    radial-gradient(
-      circle at top,
-      #3a2213 0%,
-      #1c110b 80%
-    );
+    radial-gradient(circle at top,#3a2213 0%,#1c110b 80%);
 
   --bg-night:
-    radial-gradient(
-      circle at top,
-      #22140b 0%,
-      #0c0704 85%
-    );
+    radial-gradient(circle at top,#22140b 0%,#0c0704 85%);
 
-  --card: rgba(34, 22, 15, 0.75);
+  --card: rgba(34,22,15,.75);
 
-  --gold: #d7a45b;
+  --gold:#d7a45b;
 
-  --gold-hover: #f0be75;
+  --gold-hover:#f0be75;
 
-  --gold-glow: rgba(215, 164, 91, 0.3);
+  --gold-glow:rgba(215,164,91,.3);
 
-  --cream: #f5e8ce;
+  --cream:#f5e8ce;
 
-  --muted: #cdbfa9;
+  --muted:#cdbfa9;
 
-  --line: rgba(74, 51, 30, 0.8);
+  --line:rgba(74,51,30,.8);
 }
 
-
-/* =========================================================
-   الأساس
-========================================================= */
-
 * {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
 }
 
 html,
 body {
-  max-width: 100%;
-  overflow-x: hidden !important;
-  margin: 0;
-  padding: 0;
+  max-width:100%;
+  overflow-x:hidden !important;
+  margin:0;
+  padding:0;
 }
 
 body {
 
-  background: var(--bg-night);
+  background:var(--bg-night);
 
-  background-attachment: fixed;
+  background-attachment:fixed;
 
-  color: var(--cream);
+  color:var(--cream);
 
-  font-family: Cairo, Arial, sans-serif;
+  font-family:Cairo,Arial,sans-serif;
 
-  line-height: 1.6;
+  line-height:1.6;
 
-  transition: background 1s ease;
+  transition:background 1s ease;
 }
 
 body.day-mode {
-
-  background: var(--bg-day);
-
-  background-attachment: fixed;
+  background:var(--bg-day);
+  background-attachment:fixed;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color:inherit;
+  text-decoration:none;
 }
 
 
-/* =========================================================
+/* =========================
    شاشة الترحيب
-========================================================= */
+========================= */
 
 #intro-overlay {
 
-  position: fixed;
+  position:fixed;
 
-  inset: 0;
+  inset:0;
 
-  width: 100vw;
-  height: 100vh;
+  width:100vw;
 
-  background: #120b06;
+  height:100vh;
 
-  z-index: 9999;
+  background:#120b06;
 
-  display: flex;
+  z-index:9999;
 
-  justify-content: center;
+  display:flex;
 
-  align-items: center;
+  justify-content:center;
+
+  align-items:center;
 
   transition:
-    opacity 0.8s ease,
-    visibility 0.8s ease;
+    opacity .8s ease,
+    visibility .8s ease;
 }
 
 #intro-overlay.fade-out {
 
-  opacity: 0;
+  opacity:0;
 
-  visibility: hidden;
+  visibility:hidden;
 }
 
 .intro-content {
 
-  text-align: center;
+  text-align:center;
 
   animation:
     introPulse
     1.2s
-    cubic-bezier(0.25,1,0.5,1)
+    cubic-bezier(.25,1,.5,1)
     forwards;
 }
 
 .intro-content img {
 
-  width: 130px;
+  width:130px;
 
-  height: 130px;
+  height:130px;
 
-  border-radius: 50%;
+  border-radius:50%;
 
-  border: 3px solid var(--gold);
+  border:3px solid var(--gold);
 
-  box-shadow:
-    0 0 35px var(--gold-glow);
+  box-shadow:0 0 35px var(--gold-glow);
 
-  margin-bottom: 15px;
+  margin-bottom:15px;
 
-  object-fit: cover;
+  object-fit:cover;
 }
 
 .intro-content h2 {
 
-  font-family: Amiri, serif;
+  font-family:Amiri,serif;
 
-  color: var(--gold);
+  color:var(--gold);
 
-  font-size: 28px;
+  font-size:28px;
 
-  margin: 0;
+  margin:0;
 }
 
 @keyframes introPulse {
 
   0% {
-    transform: scale(.7);
-    opacity: 0;
-    filter: blur(10px);
+    transform:scale(.7);
+    opacity:0;
+    filter:blur(10px);
   }
 
   60% {
-    transform: scale(1.05);
-    opacity: 1;
-    filter: blur(0);
+    transform:scale(1.05);
+    opacity:1;
+    filter:blur(0);
   }
 
   100% {
-    transform: scale(1);
-    opacity: 1;
-    filter: blur(0);
+    transform:scale(1);
+    opacity:1;
+    filter:blur(0);
   }
 }
 
 
-/* =========================================================
-   زر الصوت
-========================================================= */
+/* =========================
+   الصوت
+========================= */
 
 .audio-control-btn {
 
-  position: fixed;
+  position:fixed;
 
-  bottom: 20px;
+  bottom:20px;
 
-  left: 20px;
+  left:20px;
 
-  z-index: 1000;
+  z-index:1000;
 
-  background: rgba(34,22,15,.9);
+  background:rgba(34,22,15,.9);
 
-  border: 2px solid var(--gold);
+  border:2px solid var(--gold);
 
-  color: var(--gold);
+  color:var(--gold);
 
-  width: 50px;
+  width:50px;
 
-  height: 50px;
+  height:50px;
 
-  border-radius: 50%;
+  border-radius:50%;
 
-  display: flex;
+  display:flex;
 
-  align-items: center;
+  align-items:center;
 
-  justify-content: center;
+  justify-content:center;
 
-  font-size: 20px;
+  font-size:20px;
 
-  cursor: pointer;
+  cursor:pointer;
 
   box-shadow:
     0 4px 20px rgba(0,0,0,.6),
     0 0 15px var(--gold-glow);
 
-  transition: all .3s ease;
+  transition:all .3s ease;
 }
 
 .audio-control-btn:hover {
 
-  transform: scale(1.1);
+  transform:scale(1.1);
 
-  background: var(--gold);
+  background:var(--gold);
 
-  color: #120b06;
+  color:#120b06;
 }
 
 
-/* =========================================================
+/* =========================
    حالة القهوة
-========================================================= */
+========================= */
 
 .status-bar {
 
-  background: rgba(10,6,4,.9);
+  background:rgba(10,6,4,.9);
 
-  text-align: center;
+  text-align:center;
 
-  padding: 8px 15px;
+  padding:8px 15px;
 
-  font-size: 13px;
+  font-size:13px;
 
-  border-bottom: 1px solid var(--line);
+  border-bottom:1px solid var(--line);
 
-  display: flex;
+  display:flex;
 
-  justify-content: center;
+  justify-content:center;
 
-  align-items: center;
+  align-items:center;
 
-  gap: 8px;
+  gap:8px;
 }
 
 .status-dot {
 
-  width: 9px;
+  width:9px;
 
-  height: 9px;
+  height:9px;
 
-  border-radius: 50%;
+  border-radius:50%;
 
-  display: inline-block;
+  display:inline-block;
 }
 
 .status-dot.open {
 
-  background: #2e7d32;
+  background:#2e7d32;
 
-  box-shadow: 0 0 10px #4caf50;
+  box-shadow:0 0 10px #4caf50;
 
-  animation: blink 1.5s infinite;
+  animation:blink 1.5s infinite;
 }
 
 .status-dot.closed {
 
-  background: #c62828;
+  background:#c62828;
 
-  box-shadow: 0 0 10px #ef5350;
+  box-shadow:0 0 10px #ef5350;
 }
 
 @keyframes blink {
 
   0%,100% {
-    opacity: 1;
+    opacity:1;
   }
 
   50% {
-    opacity: .4;
+    opacity:.4;
   }
 }
 
 
-/* =========================================================
+/* =========================
    الحاوية
-========================================================= */
+========================= */
 
 .wrap {
 
-  max-width: 1100px;
+  max-width:1100px;
 
-  margin: auto;
+  margin:auto;
 
-  padding: 0 20px;
+  padding:0 20px;
 
-  width: 100%;
+  width:100%;
 }
 
 
-/* =========================================================
+/* =========================
    Navbar
-========================================================= */
+========================= */
 
 nav {
 
-  position: sticky;
+  position:sticky;
 
-  top: 0;
+  top:0;
 
-  z-index: 100;
+  z-index:100;
 
-  background: rgba(20,13,9,.85);
+  background:rgba(20,13,9,.85);
 
-  backdrop-filter: blur(12px);
+  backdrop-filter:blur(12px);
 
-  -webkit-backdrop-filter: blur(12px);
+  -webkit-backdrop-filter:blur(12px);
 
-  border-bottom: 1px solid var(--line);
+  border-bottom:1px solid var(--line);
 
-  padding: 15px 0;
+  padding:15px 0;
 
-  width: 100%;
+  width:100%;
 }
 
 .nav-container {
 
-  display: flex;
+  display:flex;
 
-  justify-content: space-between;
+  justify-content:space-between;
 
-  align-items: center;
+  align-items:center;
 }
 
 .brand {
 
-  font-family: Amiri, serif;
+  font-family:Amiri,serif;
 
-  font-size: 28px;
+  font-size:28px;
 
-  color: var(--gold);
+  color:var(--gold);
 
-  font-weight: bold;
+  font-weight:bold;
 
-  text-shadow:
-    0 0 10px var(--gold-glow);
+  text-shadow:0 0 10px var(--gold-glow);
 }
 
 .nav-links {
 
-  display: flex;
+  display:flex;
 
-  gap: 25px;
+  gap:25px;
 
-  list-style: none;
+  list-style:none;
 
-  margin: 0;
+  margin:0;
 
-  padding: 0;
+  padding:0;
 
-  font-size: 15px;
+  font-size:15px;
 
-  font-weight: 600;
+  font-weight:600;
 }
 
 .nav-links a {
 
-  transition: color .3s;
+  transition:color .3s;
 }
 
 .nav-links a:hover {
 
-  color: var(--gold-hover);
+  color:var(--gold-hover);
 }
 
 
-/* =========================================================
+/* =========================
    Hero
-========================================================= */
+========================= */
 
 .hero {
 
-  min-height: 85vh;
+  min-height:85vh;
 
-  display: grid;
+  display:grid;
 
-  place-items: center;
+  place-items:center;
 
-  text-align: center;
+  text-align:center;
 
-  padding: 60px 20px;
+  padding:60px 20px;
 
   background:
 
@@ -436,156 +414,153 @@ nav {
     center/cover
     no-repeat;
 
-  border-radius: 0 0 40px 40px;
+  border-radius:0 0 40px 40px;
 
-  border-bottom: 1px solid var(--line);
+  border-bottom:1px solid var(--line);
 
-  width: 100%;
+  width:100%;
 }
 
 .hero-card {
 
-  background: rgba(34,22,15,.8);
+  background:rgba(34,22,15,.8);
 
-  border:
-    1px solid
-    rgba(215,164,91,.3);
+  border:1px solid rgba(215,164,91,.3);
 
-  border-radius: 30px;
+  border-radius:30px;
 
-  padding: 40px 25px;
+  padding:40px 25px;
 
-  box-shadow:
-    0 20px 50px rgba(0,0,0,.8);
+  box-shadow:0 20px 50px rgba(0,0,0,.8);
 
-  max-width: 750px;
+  max-width:750px;
 
-  width: 100%;
+  width:100%;
 
-  backdrop-filter: blur(10px);
+  backdrop-filter:blur(10px);
 }
 
 .logo-container {
 
-  width: 150px;
+  width:150px;
 
-  height: 150px;
+  height:150px;
 
-  margin: 0 auto 20px;
+  margin:0 auto 20px;
 
-  border-radius: 50%;
+  border-radius:50%;
 
-  border: 3px solid var(--gold);
+  border:3px solid var(--gold);
 
   box-shadow:
     0 0 25px var(--gold-glow),
     0 10px 30px rgba(0,0,0,.8);
 
-  overflow: hidden;
+  overflow:hidden;
 
-  background: #20130b;
+  background:#20130b;
 }
 
 .logo-container img {
 
-  width: 100%;
+  width:100%;
 
-  height: 100%;
+  height:100%;
 
-  object-fit: cover;
+  object-fit:cover;
 }
 
 h1 {
 
-  font-family: Amiri, serif;
+  font-family:Amiri,serif;
 
-  font-size: clamp(36px,5vw,56px);
+  font-size:clamp(36px,5vw,56px);
 
-  margin: 10px 0 5px;
+  margin:10px 0 5px;
 
-  color: #f1cf96;
+  color:#f1cf96;
 }
 
 .slogan {
 
-  font-family: Amiri, serif;
+  font-family:Amiri,serif;
 
-  font-size: 24px;
+  font-size:24px;
 
-  color: var(--gold);
+  color:var(--gold);
 
-  margin-bottom: 10px;
+  margin-bottom:10px;
 }
 
 .tag {
 
-  font-size: 16px;
+  font-size:16px;
 
-  color: var(--muted);
+  color:var(--muted);
 
-  margin-bottom: 30px;
+  margin-bottom:30px;
 }
 
 
-/* =========================================================
+/* =========================
    الأزرار
-========================================================= */
+   نفس المساحات الأصلية
+========================= */
 
 .actions {
 
-  display: flex;
+  display:flex;
 
-  gap: 12px;
+  gap:12px;
 
-  justify-content: center;
+  justify-content:center;
 
-  flex-wrap: wrap;
+  flex-wrap:wrap;
 
-  align-items: center;
+  align-items:center;
 }
 
 .btn {
 
-  padding: 12px 24px;
+  padding:12px 24px;
 
-  border-radius: 999px;
+  border-radius:999px;
 
-  border: 1px solid var(--gold);
+  border:1px solid var(--gold);
 
-  font-weight: 700;
+  font-weight:700;
 
-  cursor: pointer;
+  cursor:pointer;
 
   transition:
     all .3s
     cubic-bezier(.4,0,.2,1);
 
-  font-family: inherit;
+  font-family:inherit;
 
-  display: inline-flex;
+  display:inline-flex;
 
-  align-items: center;
+  align-items:center;
 
-  justify-content: center;
+  justify-content:center;
 
-  gap: 8px;
+  gap:8px;
 }
 
 .primary {
 
-  background: var(--gold);
+  background:var(--gold);
 
-  color: #20130b;
+  color:#20130b;
 
-  box-shadow:
-    0 4px 15px var(--gold-glow);
+  box-shadow:0 4px 15px var(--gold-glow);
 }
 
 .primary:hover {
 
-  background: var(--gold-hover);
+  background:var(--gold-hover);
 
-  transform: translateY(-2px);
+  transform:translateY(-2px);
 }
 
 .suggest-btn {
@@ -597,9 +572,9 @@ h1 {
       #4a00e0
     );
 
-  color: white;
+  color:white;
 
-  border: none;
+  border:none;
 
   box-shadow:
     0 4px 15px
@@ -615,11 +590,11 @@ h1 {
 
 .whatsapp-btn {
 
-  background: #25d366;
+  background:#25d366;
 
-  color: white;
+  color:white;
 
-  border-color: #25d366;
+  border-color:#25d366;
 
   box-shadow:
     0 4px 15px
@@ -628,11 +603,11 @@ h1 {
 
 .whatsapp-btn:hover {
 
-  background: #20ba5a;
+  background:#20ba5a;
 
-  border-color: #20ba5a;
+  border-color:#20ba5a;
 
-  transform: translateY(-2px);
+  transform:translateY(-2px);
 }
 
 .instagram-btn {
@@ -647,9 +622,9 @@ h1 {
       #bc1888 100%
     );
 
-  color: white;
+  color:white;
 
-  border: none;
+  border:none;
 
   box-shadow:
     0 4px 15px
@@ -665,11 +640,11 @@ h1 {
 
 .instagram-btn svg {
 
-  width: 20px;
+  width:20px;
 
-  height: 20px;
+  height:20px;
 
-  fill: currentColor;
+  fill:currentColor;
 }
 
 .maps-btn {
@@ -681,9 +656,9 @@ h1 {
       #34a853
     );
 
-  color: white;
+  color:white;
 
-  border: none;
+  border:none;
 
   box-shadow:
     0 4px 15px
@@ -699,9 +674,9 @@ h1 {
 
 .ghost {
 
-  background: transparent;
+  background:transparent;
 
-  color: var(--cream);
+  color:var(--cream);
 }
 
 .ghost:hover {
@@ -709,48 +684,47 @@ h1 {
   background:
     rgba(215,164,91,.15);
 
-  transform:
-    translateY(-2px);
+  transform:translateY(-2px);
 }
 
 
-/* =========================================================
+/* =========================
    عناوين الأقسام
-========================================================= */
+========================= */
 
 .section-head {
 
-  text-align: center;
+  text-align:center;
 
-  padding: 50px 0 20px;
+  padding:50px 0 20px;
 }
 
 .section-head .eyebrow {
 
-  letter-spacing: 4px;
+  letter-spacing:4px;
 
-  font-size: 12px;
+  font-size:12px;
 
-  color: var(--gold);
+  color:var(--gold);
 
-  font-weight: 800;
+  font-weight:800;
 }
 
 .section-head h2 {
 
-  font-family: Amiri, serif;
+  font-family:Amiri,serif;
 
-  font-size: clamp(30px,4vw,44px);
+  font-size:clamp(30px,4vw,44px);
 
-  margin: 5px 0;
+  margin:5px 0;
 
-  color: #f1cf96;
+  color:#f1cf96;
 }
 
 
-/* =========================================================
+/* =========================
    الشريط اليومي
-========================================================= */
+========================= */
 
 .daily-banner {
 
@@ -762,45 +736,42 @@ h1 {
       rgba(215,164,91,.15)
     );
 
-  border-top: 1px solid var(--gold);
+  border-top:1px solid var(--gold);
 
-  border-bottom: 1px solid var(--gold);
+  border-bottom:1px solid var(--gold);
 
-  text-align: center;
+  text-align:center;
 
-  padding: 10px 15px;
+  padding:10px 15px;
 
-  font-family: Amiri, serif;
+  font-family:Amiri,serif;
 
-  font-size: 18px;
+  font-size:18px;
 
-  color: #f1cf96;
+  color:#f1cf96;
 
-  margin-bottom: 25px;
+  margin-bottom:25px;
 }
 
 
-/* =========================================================
+/* =========================
    الأكثر طلباً
-========================================================= */
+========================= */
 
 .featured-grid {
 
-  display: grid;
+  display:grid;
 
   grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(200px,1fr)
-    );
+    repeat(auto-fit,minmax(200px,1fr));
 
-  gap: 25px;
+  gap:25px;
 
-  margin-top: 25px;
+  margin-top:25px;
 
-  margin-bottom: 30px;
+  margin-bottom:30px;
 
-  overflow: visible !important;
+  overflow:visible !important;
 }
 
 .featured-card {
@@ -808,143 +779,134 @@ h1 {
   background:
     rgba(45,29,19,.85);
 
-  border: 1px solid var(--gold);
+  border:1px solid var(--gold);
 
-  border-radius: 16px;
+  border-radius:16px;
 
-  padding: 30px 18px 18px;
+  padding:30px 18px 18px;
 
-  text-align: center;
+  text-align:center;
 
-  position: relative;
+  position:relative;
 
   box-shadow:
     0 8px 20px rgba(0,0,0,.4);
 
-  overflow: visible !important;
+  overflow:visible !important;
 }
 
 .featured-badge {
 
-  position: absolute;
+  position:absolute;
 
-  top: -14px;
+  top:-14px;
 
-  right: 15px;
+  right:15px;
 
-  background: var(--gold);
+  background:var(--gold);
 
-  color: #140d09;
+  color:#140d09;
 
-  font-size: 13px;
+  font-size:13px;
 
-  font-weight: 800;
+  font-weight:800;
 
-  padding: 4px 14px;
+  padding:4px 14px;
 
-  border-radius: 8px;
+  border-radius:8px;
 
-  white-space: nowrap;
+  white-space:nowrap;
 
-  box-shadow:
-    0 4px 10px rgba(0,0,0,.5);
+  box-shadow:0 4px 10px rgba(0,0,0,.5);
 
-  z-index: 10;
+  z-index:10;
 
-  line-height: 1.2;
+  line-height:1.2;
 }
 
 .featured-card h4 {
 
-  margin: 0;
+  margin:0;
 
-  color: var(--cream);
+  color:var(--cream);
 
-  font-size: 18px;
+  font-size:18px;
 }
 
 
-/* =========================================================
+/* =========================
    البحث
-========================================================= */
+========================= */
 
 .search-box {
 
-  margin: 0 auto 30px;
+  margin:0 auto 30px;
 
-  max-width: 500px;
+  max-width:500px;
 
-  position: relative;
+  position:relative;
 }
 
 .search-input {
 
-  width: 100%;
+  width:100%;
 
-  padding: 14px 20px;
+  padding:14px 20px;
 
-  border-radius: 999px;
+  border-radius:999px;
 
-  border: 1px solid var(--gold);
+  border:1px solid var(--gold);
 
-  background:
-    rgba(20,13,9,.9);
+  background:rgba(20,13,9,.9);
 
-  color: var(--cream);
+  color:var(--cream);
 
-  font-family: inherit;
+  font-family:inherit;
 
-  font-size: 15px;
+  font-size:15px;
 
-  outline: none;
+  outline:none;
 
-  box-shadow:
-    0 4px 15px rgba(0,0,0,.5);
+  box-shadow:0 4px 15px rgba(0,0,0,.5);
 
-  transition:
-    border-color .3s;
+  transition:border-color .3s;
 }
 
 .search-input::placeholder {
 
-  color: var(--muted);
+  color:var(--muted);
 }
 
 .search-input:focus {
 
-  border-color:
-    var(--gold-hover);
+  border-color:var(--gold-hover);
 
-  box-shadow:
-    0 0 15px var(--gold-glow);
+  box-shadow:0 0 15px var(--gold-glow);
 }
 
 
-/* =========================================================
+/* =========================
    التصنيفات
-========================================================= */
+========================= */
 
 .categories {
 
-  display: grid;
+  display:grid;
 
-  gap: 18px;
+  gap:18px;
 }
 
 .category {
 
-  border:
-    1px solid
-    var(--line);
+  border:1px solid var(--line);
 
-  border-radius: 20px;
+  border-radius:20px;
 
-  overflow: hidden;
+  overflow:hidden;
 
-  background:
-    rgba(32,20,13,.6);
+  background:rgba(32,20,13,.6);
 
-  backdrop-filter: blur(5px);
+  backdrop-filter:blur(5px);
 
   transition:
     border-color .4s ease,
@@ -953,7 +915,7 @@ h1 {
 
 .category.open {
 
-  border-color: var(--gold);
+  border-color:var(--gold);
 
   box-shadow:
     0 5px 20px
@@ -962,82 +924,77 @@ h1 {
 
 .category-head {
 
-  width: 100%;
+  width:100%;
 
-  border: 0;
+  border:0;
 
-  background: transparent;
+  background:transparent;
 
-  color: var(--cream);
+  color:var(--cream);
 
-  display: grid;
+  display:grid;
 
-  grid-template-columns:
-    45px 1fr auto 30px;
+  grid-template-columns:45px 1fr auto 30px;
 
-  align-items: center;
+  align-items:center;
 
-  gap: 12px;
+  gap:12px;
 
-  text-align: right;
+  text-align:right;
 
-  padding: 18px 24px;
+  padding:18px 24px;
 
-  cursor: pointer;
+  cursor:pointer;
 
-  font-family: inherit;
+  font-family:inherit;
 }
 
 .category-icon {
 
-  width: 44px;
+  width:44px;
 
-  height: 44px;
+  height:44px;
 
-  border:
-    1px solid
-    var(--gold);
+  border:1px solid var(--gold);
 
-  border-radius: 50%;
+  border-radius:50%;
 
-  display: grid;
+  display:grid;
 
-  place-items: center;
+  place-items:center;
 
-  background:
-    rgba(18,11,7,.8);
+  background:rgba(18,11,7,.8);
 
-  font-size: 20px;
+  font-size:20px;
 }
 
 .category-title {
 
-  font-family: Amiri, serif;
+  font-family:Amiri,serif;
 
-  font-size: 24px;
+  font-size:24px;
 
-  color: #f1cf96;
+  color:#f1cf96;
 }
 
 .category-count {
 
-  font-size: 13px;
+  font-size:13px;
 
-  color: var(--muted);
+  color:var(--muted);
 
-  background:
-    rgba(0,0,0,.3);
+  background:rgba(0,0,0,.3);
 
-  padding: 4px 10px;
+  padding:4px 10px;
 
-  border-radius: 20px;
+  border-radius:20px;
 }
 
 .plus {
 
-  font-size: 22px;
+  font-size:22px;
 
-  color: var(--gold);
+  color:var(--gold);
 
   transition:
     transform .4s
@@ -1046,46 +1003,43 @@ h1 {
 
 .category.open .plus {
 
-  transform: rotate(45deg);
+  transform:rotate(45deg);
 }
 
 .category-body {
 
-  max-height: 0;
+  max-height:0;
 
-  overflow: hidden;
+  overflow:hidden;
 
   transition:
     max-height .5s
     cubic-bezier(.4,0,.2,1),
     opacity .4s ease-in-out;
 
-  opacity: 0;
+  opacity:0;
 }
 
 .category.open .category-body {
 
-  opacity: 1;
+  opacity:1;
 }
 
 
-/* =========================================================
+/* =========================
    الأصناف
-========================================================= */
+========================= */
 
 .items {
 
-  padding: 10px 20px 24px;
+  padding:10px 20px 24px;
 
-  display: grid;
+  display:grid;
 
   grid-template-columns:
-    repeat(
-      auto-fill,
-      minmax(200px,1fr)
-    );
+    repeat(auto-fill,minmax(200px,1fr));
 
-  gap: 12px;
+  gap:12px;
 }
 
 .item-card {
@@ -1097,17 +1051,17 @@ h1 {
   background:
     rgba(22,15,11,.8);
 
-  border-radius: 14px;
+  border-radius:14px;
 
-  padding: 14px 16px;
+  padding:14px 16px;
 
-  display: flex;
+  display:flex;
 
-  justify-content: space-between;
+  justify-content:space-between;
 
-  align-items: center;
+  align-items:center;
 
-  font-size: 15px;
+  font-size:15px;
 
   transition:
     transform .3s ease,
@@ -1117,118 +1071,113 @@ h1 {
 
 .item-card:hover {
 
-  transform: translateY(-3px);
+  transform:translateY(-3px);
 
-  border-color: var(--gold);
+  border-color:var(--gold);
 }
 
 .item-card.highlight {
 
-  border-color: var(--gold);
+  border-color:var(--gold);
 
-  background:
-    rgba(215,164,91,.15);
+  background:rgba(215,164,91,.15);
 
-  transform: scale(1.02);
+  transform:scale(1.02);
 }
 
 .item-card .price {
 
-  color: var(--gold);
+  color:var(--gold);
 
-  font-weight: bold;
+  font-weight:bold;
 
-  background:
-    rgba(215,164,91,.1);
+  background:rgba(215,164,91,.1);
 
-  padding: 2px 8px;
+  padding:2px 8px;
 
-  border-radius: 6px;
+  border-radius:6px;
 }
 
 
-/* =========================================================
+/* =========================
    البطاقات
-========================================================= */
+========================= */
 
 .grid-cards {
 
-  display: grid;
+  display:grid;
 
   grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(280px,1fr)
-    );
+    repeat(auto-fit,minmax(280px,1fr));
 
-  gap: 25px;
+  gap:25px;
 }
 
 .card-item {
 
-  background: var(--card);
+  background:var(--card);
 
-  border:
-    1px solid
-    var(--line);
+  border:1px solid var(--line);
 
-  border-radius: 22px;
+  border-radius:22px;
 
-  padding: 30px;
+  padding:30px;
 
-  text-align: center;
+  text-align:center;
 }
 
 .card-item h3 {
 
-  font-family: Amiri, serif;
+  font-family:Amiri,serif;
 
-  color: var(--gold);
+  color:var(--gold);
 
-  font-size: 24px;
+  font-size:24px;
 
-  margin-top: 0;
+  margin-top:0;
 }
 
 
 /* =========================================================
-   معرض الصور الجديد
+   معرض الصور - معدل
 ========================================================= */
 
 .gallery-section {
 
-  margin-top: 75px;
+  margin-top:75px;
 
-  margin-bottom: 25px;
+  margin-bottom:25px;
+
+  width:100%;
 }
 
 .gallery-title {
 
-  text-align: center;
+  text-align:center;
 
-  margin-bottom: 25px;
+  margin-bottom:25px;
 }
 
 .gallery-title .eyebrow {
 
-  letter-spacing: 4px;
+  letter-spacing:4px;
 
-  font-size: 12px;
+  font-size:12px;
 
-  color: var(--gold);
+  color:var(--gold);
 
-  font-weight: 800;
+  font-weight:800;
 }
 
 .gallery-title h2 {
 
-  font-family: Amiri, serif;
+  font-family:Amiri,serif;
 
-  font-size: clamp(30px,4vw,44px);
+  font-size:clamp(30px,4vw,44px);
 
-  margin: 5px 0;
+  margin:5px 0;
 
-  color: #f1cf96;
+  color:#f1cf96;
 }
 
 
@@ -1236,26 +1185,25 @@ h1 {
 
 .gallery {
 
-  display: flex;
+  display:flex;
 
-  gap: 20px;
+  gap:20px;
 
-  overflow-x: auto;
+  overflow-x:auto;
 
-  overflow-y: hidden;
+  overflow-y:hidden;
 
-  padding:
-    20px 8px 28px;
+  padding:20px 8px 28px;
 
-  scroll-snap-type: x mandatory;
+  scroll-snap-type:x mandatory;
 
-  scrollbar-width: thin;
+  scrollbar-width:thin;
 
-  scrollbar-color:
-    var(--gold)
-    transparent;
+  scrollbar-color:var(--gold) transparent;
 
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling:touch;
+
+  width:100%;
 }
 
 
@@ -1263,19 +1211,19 @@ h1 {
 
 .gallery::-webkit-scrollbar {
 
-  height: 6px;
+  height:6px;
 }
 
 .gallery::-webkit-scrollbar-track {
 
-  background: transparent;
+  background:transparent;
 }
 
 .gallery::-webkit-scrollbar-thumb {
 
-  background: var(--gold);
+  background:var(--gold);
 
-  border-radius: 20px;
+  border-radius:20px;
 }
 
 
@@ -1283,32 +1231,37 @@ h1 {
 
 .gallery-card {
 
-  flex:
-    0 0 340px;
+  flex:0 0 340px;
 
-  height: 300px;
+  height:300px;
 
-  border-radius: 22px;
+  border-radius:22px;
 
-  overflow: hidden;
+  overflow:hidden;
 
   border:
     1px solid
     rgba(215,164,91,.5);
 
-  background: #1c110b;
+  background:#120b06;
 
   box-shadow:
     0 12px 35px
     rgba(0,0,0,.6);
 
-  scroll-snap-align: center;
+  scroll-snap-align:center;
 
-  position: relative;
+  position:relative;
 
   transition:
     transform .4s ease,
     border-color .4s ease;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
 }
 
 .gallery-card:hover {
@@ -1317,19 +1270,26 @@ h1 {
     translateY(-7px)
     scale(1.02);
 
-  border-color:
-    var(--gold);
+  border-color:var(--gold);
 }
+
+
+/*
+   مهم:
+   contain = الصورة كاملة بدون قص
+*/
 
 .gallery-card img {
 
-  width: 100%;
+  width:100%;
 
-  height: 100%;
+  height:100%;
 
-  object-fit: cover;
+  object-fit:contain;
 
-  display: block;
+  display:block;
+
+  background:#120b06;
 
   transition:
     transform .6s ease;
@@ -1337,198 +1297,200 @@ h1 {
 
 .gallery-card:hover img {
 
-  transform: scale(1.06);
+  transform:scale(1.03);
 }
 
 
-/* طبقة إضاءة */
+/* طبقة إضاءة خفيفة */
 
 .gallery-card::after {
 
-  content: "";
+  content:"";
 
-  position: absolute;
+  position:absolute;
 
-  inset: 0;
+  inset:0;
 
   background:
     linear-gradient(
       to top,
-      rgba(10,6,4,.45),
+      rgba(10,6,4,.25),
       transparent 45%
     );
 
-  pointer-events: none;
+  pointer-events:none;
 }
 
 
-/* =========================================================
+/* =========================
    الفوتر
-========================================================= */
+========================= */
 
 footer {
 
-  text-align: center;
+  text-align:center;
 
-  color: var(--muted);
+  color:var(--muted);
 
-  padding: 40px 0;
+  padding:40px 0;
 
-  border-top:
-    1px solid
-    var(--line);
+  border-top:1px solid var(--line);
 
-  margin-top: 60px;
+  margin-top:60px;
 
-  font-size: 14px;
+  font-size:14px;
 }
 
 
-/* =========================================================
+/* =========================
    الهاتف
-========================================================= */
+========================= */
 
 @media(max-width:768px) {
 
   .nav-links {
-    display: none;
+    display:none;
   }
 
   .wrap {
-    padding:
-      0 14px;
+    padding:0 14px;
   }
 
   .hero {
 
-    min-height: 90vh;
+    min-height:90vh;
 
-    padding:
-      40px 12px;
+    padding:40px 12px;
 
-    border-radius:
-      0 0 25px 25px;
+    border-radius:0 0 25px 25px;
   }
 
   .hero-card {
 
-    padding:
-      30px 16px;
+    padding:30px 16px;
 
-    border-radius: 24px;
+    border-radius:24px;
   }
 
   .logo-container {
 
-    width: 125px;
+    width:125px;
 
-    height: 125px;
+    height:125px;
   }
+
+
+  /* الأزرار تبقى بنفس التنسيق */
 
   .actions {
 
-    flex-direction: column;
+    flex-direction:column;
 
-    width: 100%;
+    width:100%;
   }
 
   .btn {
 
-    width: 100%;
+    width:100%;
 
-    max-width: 330px;
+    max-width:330px;
   }
+
 
   .items {
 
     grid-template-columns:
-      repeat(
-        auto-fill,
-        minmax(140px,1fr)
-      );
+      repeat(auto-fill,minmax(140px,1fr));
 
-    padding:
-      10px 12px 20px;
+    padding:10px 12px 20px;
   }
 
   .category-head {
 
-    grid-template-columns:
-      42px 1fr 25px;
+    grid-template-columns:42px 1fr 25px;
 
-    padding:
-      15px;
+    padding:15px;
   }
 
   .category-count {
 
-    display: none;
+    display:none;
   }
 
   .category-title {
 
-    font-size: 21px;
+    font-size:21px;
   }
 
 
-  /* معرض الصور على الهاتف */
+  /* =========================
+     معرض الصور بالموبايل
+  ========================= */
 
   .gallery {
 
-    gap: 14px;
+    gap:14px;
 
-    padding:
-      18px 5px 25px;
+    padding:18px 5px 25px;
 
-    scroll-snap-type:
-      x mandatory;
+    scroll-snap-type:x mandatory;
+
+    direction:rtl;
   }
 
   .gallery-card {
 
-    flex:
-      0 0 82vw;
+    flex:0 0 82vw;
 
-    max-width: 330px;
+    max-width:330px;
 
-    height: 300px;
+    height:300px;
 
-    scroll-snap-align:
-      center;
+    scroll-snap-align:center;
+
+    flex-shrink:0;
+  }
+
+  .gallery-card img {
+
+    object-fit:contain;
+
+    width:100%;
+
+    height:100%;
   }
 
   .gallery-title {
 
-    margin-bottom: 15px;
+    margin-bottom:15px;
   }
 
 }
 
 
-/* =========================================================
+/* =========================
    شاشات صغيرة جداً
-========================================================= */
+========================= */
 
 @media(max-width:380px) {
 
   .gallery-card {
 
-    flex-basis: 86vw;
+    flex-basis:86vw;
 
-    height: 270px;
+    height:270px;
   }
 
   .category-title {
 
-    font-size: 19px;
+    font-size:19px;
   }
 
   .item-card {
 
-    font-size: 14px;
+    font-size:14px;
 
-    padding:
-      12px;
+    padding:12px;
   }
 }
 
@@ -1539,9 +1501,9 @@ footer {
 <body>
 
 
-<!-- =======================================================
+<!-- =========================
      شاشة الترحيب
-======================================================= -->
+========================= -->
 
 <div id="intro-overlay">
 
@@ -1560,43 +1522,43 @@ footer {
 </div>
 
 
-<!-- =======================================================
+<!-- =========================
      الصوت
-======================================================= -->
+========================= -->
 
 <button
-  class="audio-control-btn"
-  id="audioToggle"
-  onclick="toggleAudio()"
-  title="تشغيل / إيقاف الموسيقى">
+class="audio-control-btn"
+id="audioToggle"
+onclick="toggleAudio()"
+title="تشغيل / إيقاف الموسيقى">
 
   🎵
 
 </button>
 
 <audio
-  id="bgAudio"
-  loop
-  preload="auto">
+id="bgAudio"
+loop
+preload="auto">
 
   <source
-    src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3"
-    type="audio/mpeg">
+  src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3"
+  type="audio/mpeg">
 
 </audio>
 
 
-<!-- =======================================================
+<!-- =========================
      حالة القهوة
-======================================================= -->
+========================= -->
 
 <div
-  class="status-bar"
-  id="statusBar">
+class="status-bar"
+id="statusBar">
 
   <span
-    class="status-dot open"
-    id="statusDot">
+  class="status-dot open"
+  id="statusDot">
   </span>
 
   <span id="statusText">
@@ -1606,9 +1568,9 @@ footer {
 </div>
 
 
-<!-- =======================================================
+<!-- =========================
      Navbar
-======================================================= -->
+========================= -->
 
 <nav>
 
@@ -1645,22 +1607,22 @@ footer {
 </nav>
 
 
-<!-- =======================================================
+<!-- =========================
      Hero
-======================================================= -->
+========================= -->
 
 <section class="hero">
 
   <div
-    class="hero-card"
-    data-aos="zoom-in"
-    data-aos-duration="800">
+  class="hero-card"
+  data-aos="zoom-in"
+  data-aos-duration="800">
 
     <div class="logo-container">
 
       <img
-        src="1000216576.jpg"
-        alt="لوغو قهوة القنطرة">
+      src="1000216576.jpg"
+      alt="لوغو قهوة القنطرة">
 
     </div>
 
@@ -1680,8 +1642,8 @@ footer {
     <div class="actions">
 
       <a
-        href="#menu"
-        class="btn primary">
+      href="#menu"
+      class="btn primary">
 
         📜 تصفح المنيو
 
@@ -1689,8 +1651,8 @@ footer {
 
 
       <button
-        onclick="suggestDrink()"
-        class="btn suggest-btn">
+      onclick="suggestDrink()"
+      class="btn suggest-btn">
 
         🎲 محتار شو تطلب؟
 
@@ -1698,10 +1660,10 @@ footer {
 
 
       <a
-        href="https://wa.me/963986629779"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn whatsapp-btn">
+      href="https://wa.me/963986629779"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn whatsapp-btn">
 
         💬 حجز طاولة عبر واتساب
 
@@ -1709,8 +1671,8 @@ footer {
 
 
       <a
-        href="tel:0986629779"
-        class="btn ghost">
+      href="tel:0986629779"
+      class="btn ghost">
 
         📞 0986629779
 
@@ -1718,10 +1680,10 @@ footer {
 
 
       <a
-        href="https://maps.app.goo.gl/g2wsuRepbEL9x7TJA?g_st=ac"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn maps-btn">
+      href="https://maps.app.goo.gl/g2wsuRepbEL9x7TJA?g_st=ac"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn maps-btn">
 
         📍 موقعنا
 
@@ -1729,11 +1691,11 @@ footer {
 
 
       <a
-        href="https://www.instagram.com/cafe_al_qantara?igsi=MTQ2bmNrcjZrbTk2ZQ=="
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn instagram-btn"
-        aria-label="إنستغرام">
+      href="https://www.instagram.com/cafe_al_qantara?igsi=MTQ2bmNrcjZrbTk2ZQ=="
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn instagram-btn"
+      aria-label="إنستغرام">
 
         <svg viewBox="0 0 24 24">
 
@@ -1753,16 +1715,16 @@ footer {
 <div class="wrap">
 
 
-<!-- =======================================================
+<!-- =========================
      المنيو
-======================================================= -->
+========================= -->
 
 <section id="menu">
 
   <div
-    class="section-head"
-    data-aos="fade-up"
-    data-aos-duration="600">
+  class="section-head"
+  data-aos="fade-up"
+  data-aos-duration="600">
 
     <span class="eyebrow">
       OUR MENU
@@ -1776,24 +1738,22 @@ footer {
 
 
   <div
-    class="daily-banner"
-    id="dailyBanner"
-    data-aos="fade-up"
-    data-aos-duration="600">
+  class="daily-banner"
+  id="dailyBanner"
+  data-aos="fade-up"
+  data-aos-duration="600">
 
     جاري تحميل العبارة الترحيبية اليومية...
 
   </div>
 
 
-  <!-- الأكثر طلباً -->
-
   <div class="featured-grid">
 
     <div
-      class="featured-card"
-      data-aos="fade-right"
-      data-aos-duration="600">
+    class="featured-card"
+    data-aos="fade-right"
+    data-aos-duration="600">
 
       <span class="featured-badge">
         ☕ الأكثر طلباً
@@ -1807,9 +1767,9 @@ footer {
 
 
     <div
-      class="featured-card"
-      data-aos="fade-up"
-      data-aos-duration="600">
+    class="featured-card"
+    data-aos="fade-up"
+    data-aos-duration="600">
 
       <span class="featured-badge">
         ⭐ مميز
@@ -1823,9 +1783,9 @@ footer {
 
 
     <div
-      class="featured-card"
-      data-aos="fade-left"
-      data-aos-duration="600">
+    class="featured-card"
+    data-aos="fade-left"
+    data-aos-duration="600">
 
       <span class="featured-badge">
         💨 فاخر
@@ -1840,19 +1800,17 @@ footer {
   </div>
 
 
-  <!-- البحث -->
-
   <div
-    class="search-box"
-    data-aos="fade-up"
-    data-aos-duration="600">
+  class="search-box"
+  data-aos="fade-up"
+  data-aos-duration="600">
 
     <input
-      type="text"
-      id="searchInput"
-      class="search-input"
-      placeholder="🔍 ابحث عن مشروبك أو الحلوى المفضلة..."
-      oninput="filterMenu()">
+    type="text"
+    id="searchInput"
+    class="search-input"
+    placeholder="🔍 ابحث عن مشروبك أو الحلوى المفضلة..."
+    oninput="filterMenu()">
 
   </div>
 
@@ -1860,22 +1818,18 @@ footer {
   <div class="categories">
 
 
-<!-- =======================================================
-     مشروبات ساخنة
-======================================================= -->
+<!-- مشروبات ساخنة -->
 
 <div
-  class="category"
-  data-aos="fade-right"
-  data-aos-duration="600">
+class="category"
+data-aos="fade-right"
+data-aos-duration="600">
 
   <button
-    class="category-head"
-    onclick="toggleCategory(this)">
+  class="category-head"
+  onclick="toggleCategory(this)">
 
-    <div class="category-icon">
-      ☕
-    </div>
+    <div class="category-icon">☕</div>
 
     <div class="category-title">
       مشروبات ساخنة
@@ -1885,9 +1839,7 @@ footer {
       21 صنف
     </div>
 
-    <div class="plus">
-      +
-    </div>
+    <div class="plus">+</div>
 
   </button>
 
@@ -1924,18 +1876,16 @@ footer {
 </div>
 
 
-<!-- =======================================================
-     ميلك شيك
-======================================================= -->
+<!-- ميلك شيك -->
 
 <div
-  class="category"
-  data-aos="fade-left"
-  data-aos-duration="600">
+class="category"
+data-aos="fade-left"
+data-aos-duration="600">
 
   <button
-    class="category-head"
-    onclick="toggleCategory(this)">
+  class="category-head"
+  onclick="toggleCategory(this)">
 
     <div class="category-icon">🥤</div>
 
@@ -1947,9 +1897,7 @@ footer {
       11 صنف
     </div>
 
-    <div class="plus">
-      +
-    </div>
+    <div class="plus">+</div>
 
   </button>
 
@@ -1976,18 +1924,16 @@ footer {
 </div>
 
 
-<!-- =======================================================
-     كوكتيلات
-======================================================= -->
+<!-- كوكتيلات -->
 
 <div
-  class="category"
-  data-aos="fade-right"
-  data-aos-duration="600">
+class="category"
+data-aos="fade-right"
+data-aos-duration="600">
 
   <button
-    class="category-head"
-    onclick="toggleCategory(this)">
+  class="category-head"
+  onclick="toggleCategory(this)">
 
     <div class="category-icon">🍹</div>
 
@@ -1999,9 +1945,7 @@ footer {
       8 أصناف
     </div>
 
-    <div class="plus">
-      +
-    </div>
+    <div class="plus">+</div>
 
   </button>
 
@@ -2025,18 +1969,16 @@ footer {
 </div>
 
 
-<!-- =======================================================
-     عصائر
-======================================================= -->
+<!-- عصائر -->
 
 <div
-  class="category"
-  data-aos="fade-left"
-  data-aos-duration="600">
+class="category"
+data-aos="fade-left"
+data-aos-duration="600">
 
   <button
-    class="category-head"
-    onclick="toggleCategory(this)">
+  class="category-head"
+  onclick="toggleCategory(this)">
 
     <div class="category-icon">🍊</div>
 
@@ -2048,9 +1990,7 @@ footer {
       17 صنف
     </div>
 
-    <div class="plus">
-      +
-    </div>
+    <div class="plus">+</div>
 
   </button>
 
@@ -2083,18 +2023,16 @@ footer {
 </div>
 
 
-<!-- =======================================================
-     مشروبات غربية
-======================================================= -->
+<!-- مشروبات غربية -->
 
 <div
-  class="category"
-  data-aos="fade-right"
-  data-aos-duration="600">
+class="category"
+data-aos="fade-right"
+data-aos-duration="600">
 
   <button
-    class="category-head"
-    onclick="toggleCategory(this)">
+  class="category-head"
+  onclick="toggleCategory(this)">
 
     <div class="category-icon">🧊</div>
 
@@ -2106,9 +2044,7 @@ footer {
       5 أصناف
     </div>
 
-    <div class="plus">
-      +
-    </div>
+    <div class="plus">+</div>
 
   </button>
 
@@ -2129,18 +2065,16 @@ footer {
 </div>
 
 
-<!-- =======================================================
-     حلويات
-======================================================= -->
+<!-- حلويات -->
 
 <div
-  class="category"
-  data-aos="fade-left"
-  data-aos-duration="600">
+class="category"
+data-aos="fade-left"
+data-aos-duration="600">
 
   <button
-    class="category-head"
-    onclick="toggleCategory(this)">
+  class="category-head"
+  onclick="toggleCategory(this)">
 
     <div class="category-icon">🧇</div>
 
@@ -2152,9 +2086,7 @@ footer {
       22 صنف
     </div>
 
-    <div class="plus">
-      +
-    </div>
+    <div class="plus">+</div>
 
   </button>
 
@@ -2192,18 +2124,16 @@ footer {
 </div>
 
 
-<!-- =======================================================
-     سلطات فواكه
-======================================================= -->
+<!-- سلطات فواكه -->
 
 <div
-  class="category"
-  data-aos="fade-right"
-  data-aos-duration="600">
+class="category"
+data-aos="fade-right"
+data-aos-duration="600">
 
   <button
-    class="category-head"
-    onclick="toggleCategory(this)">
+  class="category-head"
+  onclick="toggleCategory(this)">
 
     <div class="category-icon">🥗</div>
 
@@ -2215,9 +2145,7 @@ footer {
       5 أصناف
     </div>
 
-    <div class="plus">
-      +
-    </div>
+    <div class="plus">+</div>
 
   </button>
 
@@ -2238,18 +2166,16 @@ footer {
 </div>
 
 
-<!-- =======================================================
-     بوظة
-======================================================= -->
+<!-- بوظة -->
 
 <div
-  class="category"
-  data-aos="fade-left"
-  data-aos-duration="600">
+class="category"
+data-aos="fade-left"
+data-aos-duration="600">
 
   <button
-    class="category-head"
-    onclick="toggleCategory(this)">
+  class="category-head"
+  onclick="toggleCategory(this)">
 
     <div class="category-icon">🍨</div>
 
@@ -2261,9 +2187,7 @@ footer {
       6 أصناف
     </div>
 
-    <div class="plus">
-      +
-    </div>
+    <div class="plus">+</div>
 
   </button>
 
@@ -2285,18 +2209,16 @@ footer {
 </div>
 
 
-<!-- =======================================================
-     أراكيل
-======================================================= -->
+<!-- أراكيل -->
 
 <div
-  class="category"
-  data-aos="fade-right"
-  data-aos-duration="600">
+class="category"
+data-aos="fade-right"
+data-aos-duration="600">
 
   <button
-    class="category-head"
-    onclick="toggleCategory(this)">
+  class="category-head"
+  onclick="toggleCategory(this)">
 
     <div class="category-icon">💨</div>
 
@@ -2308,9 +2230,7 @@ footer {
       9 أصناف
     </div>
 
-    <div class="plus">
-      +
-    </div>
+    <div class="plus">+</div>
 
   </button>
 
@@ -2335,18 +2255,16 @@ footer {
 </div>
 
 
-<!-- =======================================================
-     قفل وذكريات
-======================================================= -->
+<!-- قفل وذكريات -->
 
 <div
-  class="category"
-  data-aos="fade-left"
-  data-aos-duration="600">
+class="category"
+data-aos="fade-left"
+data-aos-duration="600">
 
   <button
-    class="category-head"
-    onclick="toggleCategory(this)">
+  class="category-head"
+  onclick="toggleCategory(this)">
 
     <div class="category-icon">🔒</div>
 
@@ -2358,9 +2276,7 @@ footer {
       4 أحجام
     </div>
 
-    <div class="plus">
-      +
-    </div>
+    <div class="plus">+</div>
 
   </button>
 
@@ -2400,16 +2316,16 @@ footer {
 </section>
 
 
-<!-- =======================================================
+<!-- =========================
      عن القهوة
-======================================================= -->
+========================= -->
 
 <section id="about">
 
   <div
-    class="section-head"
-    data-aos="fade-up"
-    data-aos-duration="600">
+  class="section-head"
+  data-aos="fade-up"
+  data-aos-duration="600">
 
     <span class="eyebrow">
       ABOUT US
@@ -2424,11 +2340,10 @@ footer {
 
   <div class="grid-cards">
 
-
     <div
-      class="card-item"
-      data-aos="fade-right"
-      data-aos-duration="600">
+    class="card-item"
+    data-aos="fade-right"
+    data-aos-duration="600">
 
       <h3>
         🏛️ الأجواء والذكريات
@@ -2444,9 +2359,9 @@ footer {
 
 
     <div
-      class="card-item"
-      data-aos="fade-left"
-      data-aos-duration="600">
+    class="card-item"
+    data-aos="fade-left"
+    data-aos-duration="600">
 
       <h3>
         ☕ القهوة والمشروبات
@@ -2460,25 +2375,24 @@ footer {
 
     </div>
 
-
   </div>
 
 </section>
 
 
 <!-- =======================================================
-     معرض الصور
+     معرض الصور الجديد
 ======================================================= -->
 
 <section
-  id="gallery"
-  class="gallery-section">
+id="gallery"
+class="gallery-section">
 
 
   <div
-    class="gallery-title"
-    data-aos="fade-up"
-    data-aos-duration="600">
+  class="gallery-title"
+  data-aos="fade-up"
+  data-aos-duration="600">
 
     <span class="eyebrow">
       CAFE AL_QANTARA
@@ -2497,14 +2411,14 @@ footer {
     <!-- الصورة الأولى -->
 
     <div
-      class="gallery-card"
-      data-aos="fade-right"
-      data-aos-duration="700">
+    class="gallery-card"
+    data-aos="fade-right"
+    data-aos-duration="700">
 
       <img
-        src="1000218585.jpg"
-        alt="حلويات قهوة القنطرة"
-        loading="lazy">
+      src="1000218585.jpg"
+      alt="حلويات قهوة القنطرة"
+      loading="lazy">
 
     </div>
 
@@ -2512,14 +2426,14 @@ footer {
     <!-- الصورة الثانية -->
 
     <div
-      class="gallery-card"
-      data-aos="fade-right"
-      data-aos-duration="900">
+    class="gallery-card"
+    data-aos="fade-right"
+    data-aos-duration="900">
 
       <img
-        src="1000218586.jpg"
-        alt="مشروبات قهوة القنطرة"
-        loading="lazy">
+      src="1000218586.jpg"
+      alt="مشروبات قهوة القنطرة"
+      loading="lazy">
 
     </div>
 
@@ -2527,14 +2441,14 @@ footer {
     <!-- الصورة الثالثة -->
 
     <div
-      class="gallery-card"
-      data-aos="fade-right"
-      data-aos-duration="1100">
+    class="gallery-card"
+    data-aos="fade-right"
+    data-aos-duration="1100">
 
       <img
-        src="1000218584.jpg"
-        alt="أجواء قهوة القنطرة"
-        loading="lazy">
+      src="1000218584.jpg"
+      alt="أجواء قهوة القنطرة"
+      loading="lazy">
 
     </div>
 
@@ -2544,9 +2458,9 @@ footer {
 </section>
 
 
-<!-- =======================================================
+<!-- =========================
      الفوتر
-======================================================= -->
+========================= -->
 
 <footer>
 
@@ -2562,52 +2476,42 @@ footer {
 </div>
 
 
-<!-- =======================================================
-     AOS
-======================================================= -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 
 <script>
 
-/* =========================================================
+/* =========================
    تشغيل الموقع
-========================================================= */
+========================= */
 
-window.addEventListener('load', () => {
+window.addEventListener('load',() => {
 
   AOS.init({
 
-    once: false,
+    once:false,
 
-    mirror: true,
+    mirror:true,
 
-    offset: 80,
+    offset:80,
 
-    duration: 600
+    duration:600
 
   });
 
 
-  /* إخفاء شاشة البداية */
-
   setTimeout(() => {
 
     const overlay =
-      document.getElementById(
-        'intro-overlay'
-      );
+      document.getElementById('intro-overlay');
 
-    if (overlay) {
+    if(overlay) {
 
-      overlay.classList.add(
-        'fade-out'
-      );
+      overlay.classList.add('fade-out');
 
     }
 
-  }, 1200);
+  },1200);
 
 
   checkStatus();
@@ -2619,39 +2523,35 @@ window.addEventListener('load', () => {
 });
 
 
-/* =========================================================
+/* =========================
    الصوت
-========================================================= */
+========================= */
 
-let audioStarted = false;
+let audioStarted=false;
 
 
 function toggleAudio() {
 
   const audio =
-    document.getElementById(
-      'bgAudio'
-    );
+    document.getElementById('bgAudio');
 
   const btn =
-    document.getElementById(
-      'audioToggle'
-    );
+    document.getElementById('audioToggle');
 
 
-  if (audio.paused) {
+  if(audio.paused) {
 
     audio.play()
       .then(() => {
 
-        audioStarted = true;
+        audioStarted=true;
 
-        btn.innerText = '🔊';
+        btn.innerText='🔊';
 
       })
       .catch(() => {
 
-        btn.innerText = '🎵';
+        btn.innerText='🎵';
 
       });
 
@@ -2659,58 +2559,41 @@ function toggleAudio() {
 
     audio.pause();
 
-    btn.innerText = '🔇';
+    btn.innerText='🔇';
 
   }
 
 }
 
 
-/* =========================================================
+/* =========================
    حالة القهوة
-========================================================= */
+========================= */
 
 function checkStatus() {
 
-  const now =
-    new Date();
+  const now=new Date();
 
-  const hour =
-    now.getHours();
+  const hour=now.getHours();
 
 
   const statusDot =
-    document.getElementById(
-      'statusDot'
-    );
+    document.getElementById('statusDot');
 
   const statusText =
-    document.getElementById(
-      'statusText'
-    );
+    document.getElementById('statusText');
 
 
-  /*
-     الدوام:
-     10 صباحاً
-     حتى 12 منتصف الليل
-  */
+  if(hour>=10 && hour<24) {
 
-  if (
-    hour >= 10 &&
-    hour < 24
-  ) {
-
-    statusDot.className =
-      "status-dot open";
+    statusDot.className='status-dot open';
 
     statusText.innerText =
       "أهلاً بكم، القهوة مفتوحة الآن واستقبالكم يسعدنا! (أوقات العمل: 10:00 ص - 12:00 منتصف الليل)";
 
   } else {
 
-    statusDot.className =
-      "status-dot closed";
+    statusDot.className='status-dot closed';
 
     statusText.innerText =
       "القهوة مغلقة حالياً. نلتقي بكم الساعة 10:00 صباحاً!";
@@ -2720,9 +2603,9 @@ function checkStatus() {
 }
 
 
-/* =========================================================
-   وضع النهار / الليل
-========================================================= */
+/* =========================
+   وضع النهار والليل
+========================= */
 
 function setDayNightMode() {
 
@@ -2730,29 +2613,22 @@ function setDayNightMode() {
     new Date().getHours();
 
 
-  if (
-    hour >= 10 &&
-    hour < 18
-  ) {
+  if(hour>=10 && hour<18) {
 
-    document.body.classList.add(
-      'day-mode'
-    );
+    document.body.classList.add('day-mode');
 
   } else {
 
-    document.body.classList.remove(
-      'day-mode'
-    );
+    document.body.classList.remove('day-mode');
 
   }
 
 }
 
 
-/* =========================================================
+/* =========================
    العبارة اليومية
-========================================================= */
+========================= */
 
 function setDailyBanner() {
 
@@ -2761,9 +2637,7 @@ function setDailyBanner() {
 
 
   const banner =
-    document.getElementById(
-      'dailyBanner'
-    );
+    document.getElementById('dailyBanner');
 
 
   const messages = {
@@ -2787,9 +2661,9 @@ function setDailyBanner() {
 }
 
 
-/* =========================================================
+/* =========================
    فتح وإغلاق الأقسام
-========================================================= */
+========================= */
 
 function toggleCategory(button) {
 
@@ -2797,50 +2671,36 @@ function toggleCategory(button) {
     button.parentElement;
 
   const currentBody =
-    currentCategory.querySelector(
-      '.category-body'
-    );
+    currentCategory.querySelector('.category-body');
 
   const isAlreadyOpen =
-    currentCategory.classList.contains(
-      'open'
-    );
+    currentCategory.classList.contains('open');
 
 
   document
-    .querySelectorAll(
-      '.category'
-    )
+    .querySelectorAll('.category')
     .forEach(category => {
 
-      category.classList.remove(
-        'open'
-      );
+      category.classList.remove('open');
 
       const body =
-        category.querySelector(
-          '.category-body'
-        );
+        category.querySelector('.category-body');
 
-      if (body) {
+      if(body) {
 
-        body.style.maxHeight =
-          null;
+        body.style.maxHeight=null;
 
       }
 
     });
 
 
-  if (!isAlreadyOpen) {
+  if(!isAlreadyOpen) {
 
-    currentCategory.classList.add(
-      'open'
-    );
+    currentCategory.classList.add('open');
 
     currentBody.style.maxHeight =
-      currentBody.scrollHeight +
-      "px";
+      currentBody.scrollHeight+"px";
 
   }
 
@@ -2849,14 +2709,14 @@ function toggleCategory(button) {
 
     AOS.refresh();
 
-  }, 350);
+  },350);
 
 }
 
 
-/* =========================================================
+/* =========================
    تنظيف البحث العربي
-========================================================= */
+========================= */
 
 function normalizeArabic(text) {
 
@@ -2864,88 +2724,70 @@ function normalizeArabic(text) {
 
     .toLowerCase()
 
-    .replace(/[أإآ]/g, 'ا')
+    .replace(/[أإآ]/g,'ا')
 
-    .replace(/ة/g, 'ه')
+    .replace(/ة/g,'ه')
 
-    .replace(/ى/g, 'ي')
+    .replace(/ى/g,'ي')
 
-    .replace(/ؤ/g, 'و')
+    .replace(/ؤ/g,'و')
 
-    .replace(/ئ/g, 'ي')
+    .replace(/ئ/g,'ي')
 
-    .replace(/[\u064B-\u065F\u0670]/g, '')
+    .replace(/[\u064B-\u065F\u0670]/g,'')
 
     .trim();
 
 }
 
 
-/* =========================================================
+/* =========================
    البحث
-========================================================= */
+========================= */
 
 function filterMenu() {
 
   const input =
-    document.getElementById(
-      'searchInput'
-    );
+    document.getElementById('searchInput');
 
 
   const query =
-    normalizeArabic(
-      input.value
-    );
+    normalizeArabic(input.value);
 
 
   const categories =
-    document.querySelectorAll(
-      '.category'
-    );
+    document.querySelectorAll('.category');
 
 
   categories.forEach(category => {
 
     const items =
-      category.querySelectorAll(
-        '.item-card'
-      );
+      category.querySelectorAll('.item-card');
 
 
-    let hasMatch = false;
+    let hasMatch=false;
 
 
     items.forEach(item => {
 
       const text =
-        normalizeArabic(
-          item.innerText
-        );
+        normalizeArabic(item.innerText);
 
 
-      if (
-        query !== "" &&
-        text.includes(query)
-      ) {
+      if(query!=="" && text.includes(query)) {
 
-        item.classList.add(
-          'highlight'
-        );
+        item.classList.add('highlight');
 
-        item.style.display =
-          'flex';
+        item.style.display='flex';
 
-        hasMatch = true;
+        hasMatch=true;
 
       } else {
 
-        item.classList.remove(
-          'highlight'
-        );
+        item.classList.remove('highlight');
 
         item.style.display =
-          query === ""
+          query===""
             ? 'flex'
             : 'none';
 
@@ -2955,42 +2797,31 @@ function filterMenu() {
 
 
     const body =
-      category.querySelector(
-        '.category-body'
-      );
+      category.querySelector('.category-body');
 
 
-    if (query !== "" && hasMatch) {
+    if(query!=="" && hasMatch) {
 
-      category.classList.add(
-        'open'
-      );
+      category.classList.add('open');
 
       body.style.maxHeight =
-        body.scrollHeight +
-        "px";
+        body.scrollHeight+"px";
 
     }
 
-    else if (query !== "") {
+    else if(query!=="") {
 
-      category.classList.remove(
-        'open'
-      );
+      category.classList.remove('open');
 
-      body.style.maxHeight =
-        null;
+      body.style.maxHeight=null;
 
     }
 
     else {
 
-      category.classList.remove(
-        'open'
-      );
+      category.classList.remove('open');
 
-      body.style.maxHeight =
-        null;
+      body.style.maxHeight=null;
 
     }
 
@@ -3002,9 +2833,9 @@ function filterMenu() {
 }
 
 
-/* =========================================================
+/* =========================
    اقتراح مشروب
-========================================================= */
+========================= */
 
 function suggestDrink() {
 
@@ -3018,7 +2849,7 @@ function suggestDrink() {
     .filter(Boolean);
 
 
-  if (!allItems.length) {
+  if(!allItems.length) {
 
     return;
 
@@ -3028,80 +2859,69 @@ function suggestDrink() {
   const randomItem =
     allItems[
       Math.floor(
-        Math.random() *
-        allItems.length
+        Math.random()*allItems.length
       )
     ];
 
 
   alert(
-    "🎲 اقتراح القنطرة لك اليوم هو:\n\n" +
-    "✨ " +
-    randomItem +
-    " ✨\n\n" +
+    "🎲 اقتراح القنطرة لك اليوم هو:\n\n"+
+    "✨ "+
+    randomItem+
+    " ✨\n\n"+
     "نتمنى لك أوقاتاً ممتعة معنا!"
   );
 
 }
 
 
-/* =========================================================
+/* =========================
    تشغيل الصوت بعد أول تفاعل
-   - المتصفح قد يمنع التشغيل التلقائي
-========================================================= */
+========================= */
 
 function startAudioAfterInteraction() {
 
-  if (audioStarted) {
+  if(audioStarted) {
+
     return;
+
   }
 
 
   const audio =
-    document.getElementById(
-      'bgAudio'
-    );
+    document.getElementById('bgAudio');
 
 
-  audio.volume = 0.5;
+  audio.volume=.5;
 
 
   audio.play()
     .then(() => {
 
-      audioStarted = true;
+      audioStarted=true;
 
       const btn =
-        document.getElementById(
-          'audioToggle'
-        );
+        document.getElementById('audioToggle');
 
-      if (btn) {
+      if(btn) {
 
-        btn.innerText =
-          '🔊';
+        btn.innerText='🔊';
 
       }
 
     })
     .catch(() => {
 
-      /* المتصفح منع التشغيل */
-
     });
 
 }
 
 
-/*
-   التشغيل عند أول تفاعل حقيقي
-*/
-
 document.addEventListener(
   'click',
   startAudioAfterInteraction,
   {
-    once: true
+    once:true
   }
 );
 
@@ -3110,15 +2930,15 @@ document.addEventListener(
   'touchstart',
   startAudioAfterInteraction,
   {
-    once: true,
-    passive: true
+    once:true,
+    passive:true
   }
 );
 
 
-/* =========================================================
+/* =========================
    تحديث الحالة كل دقيقة
-========================================================= */
+========================= */
 
 setInterval(() => {
 
@@ -3126,7 +2946,7 @@ setInterval(() => {
 
   setDayNightMode();
 
-}, 60000);
+},60000);
 
 </script>
 
