@@ -565,6 +565,107 @@ h1 {
   transform: translateY(0);
 }
 
+/* =========================================================
+   تعديلات وتنسيقات قسم الكراسين (السحب على الموبايل والتغطية)
+========================================================= */
+#chairs-container {
+  display: flex;
+  gap: 20px;
+  padding: 15px 5px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* إخفاء شريط السحب على Firefox */
+}
+
+#chairs-container::-webkit-scrollbar {
+  display: none; /* إخفاء شريط السحب على Chrome/Safari */
+}
+
+/* تصميم الكارت ليكون ملوناً بالصورة ومحتوياً للنصوص */
+.chair-card {
+  position: relative;
+  flex: 0 0 82%; /* على الموبايل يظهر 82% من الكارت ليُعرف أنه قابلا للسحب */
+  max-width: 300px;
+  height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--gold);
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+}
+
+/* الصورة تملاء الكارت بالكامل كخلفية */
+.chair-img {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  z-index: 1;
+  border: none !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  transition: transform 0.5s ease;
+}
+
+.chair-card:hover .chair-img {
+  transform: scale(1.05);
+}
+
+/* طبقة تظليل سوداء متدرجة لضمان وضوح النصوص والنجوم فوق الصورة */
+.chair-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background: linear-gradient(to top, rgba(12, 7, 4, 0.98) 0%, rgba(12, 7, 4, 0.6) 60%, transparent 100%);
+  z-index: 2;
+}
+
+/* رفع باقي عناصر الكارت لتظهر فوق الصورة والتظليل */
+.chair-card > *:not(.chair-img) {
+  position: relative;
+  z-index: 3;
+}
+
+.chair-card h3 {
+  font-family: Amiri, serif;
+  font-size: 22px;
+  color: #fff;
+  margin: 0 0 5px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.star-rating {
+  display: inline-flex;
+  direction: ltr;
+  gap: 6px;
+  margin: 8px auto;
+  font-size: 24px;
+}
+
+.star-rating span {
+  cursor: pointer;
+  color: #777;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.star-rating span:hover,
+.star-rating span:hover ~ span {
+  color: var(--gold);
+  transform: scale(1.15);
+}
+
 footer { 
   text-align: center; 
   color: var(--muted); 
@@ -572,6 +673,20 @@ footer {
   border-top: 1px solid var(--line); 
   margin-top: 60px; 
   font-size: 14px;
+}
+
+/* شاشات الكمبيوتر والتابلت */
+@media(min-width: 769px) {
+  #chairs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    overflow-x: visible;
+  }
+  .chair-card {
+    flex: initial;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 @media(max-width: 768px) {
@@ -614,6 +729,7 @@ footer {
     <div class="brand">قهوة القنطرة</div>
     <ul class="nav-links">
       <li><a href="#menu">المنيو</a></li>
+      <li><a href="#chairs-section">الكراسين ونجم الأسبوع</a></li>
       <li><a href="#about">عن القهوة</a></li>
       <li><a href="#gallery">معرض الصور</a></li>
     </ul>
@@ -632,7 +748,7 @@ footer {
     <div class="actions">
       <a href="#menu" class="btn primary">📜 تصفح المنيو</a>
       <button onclick="suggestDrink()" class="btn suggest-btn">🎲 محتار شو تطلب؟</button>
-      <a href="https://wa.me/963992079095" target="_blank" rel="noopener noreferrer" class="btn whatsapp-btn">💬 حجز طاولة عبر واتساب</a>
+      <a href="https://wa.me/963986629779" target="_blank" rel="noopener noreferrer" class="btn whatsapp-btn">💬 حجز طاولة عبر واتساب</a>
       <a href="tel:0986629779" class="btn ghost">📞 0986629779</a>
       <a href="https://maps.app.goo.gl/g2wsuRepbEL9x7TJA?g_st=ac" target="_blank" class="btn maps-btn">📍 موقعنا</a>
       <a href="https://www.instagram.com/cafe_al_qantara?igsi=MTQ2bmNrcjZrbTk2ZQ==" target="_blank" class="btn instagram-btn" aria-label="إنستغرام">
@@ -658,12 +774,12 @@ footer {
     <!-- قسم الأكثر طلباً -->
     <div class="featured-grid">
       <div class="featured-card" data-aos="fade-right" data-aos-duration="600">
-        <span class="featured-badge">☕ الأكثر طلباً</span>
-        <h4>مته</h4>
+        <span class="featured-badge">⭐ الأكثر طلباً</span>
+        <h4>كريب القنطرة</h4>
       </div>
       <div class="featured-card" data-aos="fade-up" data-aos-duration="600">
-        <span class="featured-badge">⭐ مميز</span>
-        <h4>كريب القنطرة</h4>
+        <span class="featured-badge">☕ مميز</span>
+        <h4>شاي كرك</h4>
       </div>
       <div class="featured-card" data-aos="fade-left" data-aos-duration="600">
         <span class="featured-badge">💨 فاخر</span>
@@ -912,7 +1028,7 @@ footer {
       <div class="category" data-aos="fade-left" data-aos-duration="600">
         <button class="category-head" onclick="toggleCategory(this)">
           <div class="category-icon">🔒</div>
-          <div class="category-title">قفل وذكريات</div>
+          <div class="category-title">قفل وكريات</div>
           <div class="category-count">4 أحجام</div>
           <div class="plus">+</div>
         </button>
@@ -926,6 +1042,27 @@ footer {
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- --- قسم الكراسين ونجم الأسبوع (الجديد) --- -->
+  <section id="chairs-section">
+    <div class="section-head" data-aos="fade-up" data-aos-duration="600">
+      <span class="eyebrow">WEEKLY STAR & VOTING</span>
+      <h2>كراسين القنطرة ونجم الأسبوع</h2>
+    </div>
+
+    <!-- كارت نجم الأسبوع البارز -->
+    <div id="weekly-star-card" class="card-item" style="border: 2px solid var(--gold); margin-bottom: 40px; background: rgba(215, 164, 91, 0.12); box-shadow: 0 0 25px var(--gold-glow);" data-aos="zoom-in">
+      <h3 style="color: var(--gold); font-size: 28px;">👑 نجم الأسبوع الحالي 👑</h3>
+      <div id="star-details" style="margin-top: 15px;">
+        <p>جاري تحضير الكرسين الأفضل لهذا الأسبوع...</p>
+      </div>
+    </div>
+
+    <!-- شبكة الكراسين مع إمكانية التقييم -->
+    <div class="grid-cards" id="chairs-container" data-aos="fade-up">
+      <!-- يتم تحميل الكراسين من الباك إند عبر JavaScript تلقائياً -->
     </div>
   </section>
 
@@ -951,16 +1088,16 @@ footer {
   <section id="gallery">
     <div class="section-head" data-aos="fade-up" data-aos-duration="600">
       <span class="eyebrow">GALLERY</span>
-      <h2>صنع بحب</h2>
+      <h2>معرض الصور</h2>
     </div>
     <div class="gallery-scroll-container" data-aos="fade-up" data-aos-duration="600">
       <div class="gallery-item">
         <img src="1000218585.jpg" alt="طاجن فواكه القنطرة">
-        <div class="gallery-caption">عصير بولو منعش</div>
+        <div class="gallery-caption">طاجن فواكه القنطرة</div>
       </div>
       <div class="gallery-item">
         <img src="1000218586.jpg" alt="عصير نعنع وليمون بولو">
-        <div class="gallery-caption">طاجن فواكه القنطرة</div>
+        <div class="gallery-caption">عصير بولو منعش</div>
       </div>
       <div class="gallery-item">
         <img src="1000218584.jpg" alt="كريب القنطرة المميز">
@@ -995,6 +1132,7 @@ window.addEventListener('load', () => {
   setDayNightMode();
   setDailyBanner();
   initAudioAuto();
+  loadChairsData(); // جلب الكراسين ونجم الأسبوع عند التحميل
 });
 
 let audioStarted = false;
@@ -1038,10 +1176,10 @@ function checkStatus() {
 
   if (hour >= 10 && hour < 24) {
     statusDot.className = "status-dot open";
-    statusText.innerText = "أهلاً بكم، القهوة مفتوحة الآن واستقبالكم يسعدنا! (أوقات العمل: 11:00 صباحاً - 12:00 مساء)";
+    statusText.innerText = "أهلاً بكم، القهوة مفتوحة الآن واستقبالكم يسعدنا! (أوقات العمل: 10:00 ص - 12:00 م)";
   } else {
     statusDot.className = "status-dot closed";
-    statusText.innerText = "القهوة مغلقة حالياً. نلتقي بكم الساعة 11:00 صباحاً!";
+    statusText.innerText = "القهوة مغلقة حالياً. نلتقي بكم الساعة 10:00 صباحاً!";
   }
 }
 
@@ -1059,7 +1197,7 @@ function setDailyBanner() {
   const banner = document.getElementById('dailyBanner');
   
   const messages = {
-    5: "✨ نورتنا بهالجمعة المباركة، يا مية أهلاً وسهلاً! ✨",
+    5: "✨ جمعة مباركة بأجوائها الدافئة... قهوة القنطرة بانتظاركم بعد الصلاة ✨",
     4: "🎶 خميسكم غير في القنطرة... صحبة حلوة، عود، وأركيلة بفنجان قهوة ☕",
     6: "🌿 عطلة أسبوع سعيدة! استمتع بأحلى الأوقات مع عائلتك وأصدقائك بقهوة القنطرة ☕"
   };
@@ -1125,6 +1263,94 @@ function suggestDrink() {
   const allItems = Array.from(document.querySelectorAll('.item-card span:first-child')).map(el => el.innerText);
   const randomItem = allItems[Math.floor(Math.random() * allItems.length)];
   alert("🎲 اقتراح القنطرة لك اليوم هو:\n\n✨ " + randomItem + " ✨\n\nنتمنى لك أوقاتاً ممتعة معنا!");
+}
+
+/* --- وظائف الباك إند لتفعيل الكراسين ونجم الأسبوع --- */
+async function loadChairsData() {
+  try {
+    // 1. جلب قائمة الكراسين
+    const resChairs = await fetch('/api/chairs');
+    const chairs = await resChairs.json();
+    
+    const container = document.getElementById('chairs-container');
+    if (chairs.length === 0) {
+      container.innerHTML = '<p style="grid-column: 1/-1;">لا يوجد كراسين مضافة حالياً.</p>';
+    } else {
+      container.innerHTML = chairs.map(chair => {
+        const avg = chair.ratings && chair.ratings.length > 0 
+          ? (chair.ratings.reduce((a, b) => a + b.rating, 0) / chair.ratings.length).toFixed(1)
+          : 'لا يوجد تقييم';
+
+        return `
+          <div class="chair-card">
+            <img src="${chair.image}" alt="${chair.name}" class="chair-img">
+            <h3>${chair.name}</h3>
+            <p style="color: var(--gold); font-weight: bold; margin: 4px 0;">⭐ ${avg}</p>
+            
+            <div class="star-rating">
+              <span onclick="rateChair(${chair.id}, 5)">★</span>
+              <span onclick="rateChair(${chair.id}, 4)">★</span>
+              <span onclick="rateChair(${chair.id}, 3)">★</span>
+              <span onclick="rateChair(${chair.id}, 2)">★</span>
+              <span onclick="rateChair(${chair.id}, 1)">★</span>
+            </div>
+            <p style="font-size: 12px; color: var(--muted); margin: 0;">اضغط على نجمة للتقييم</p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 2. جلب نجم الأسبوع
+    const resStar = await fetch('/api/weekly-star');
+    const star = await resStar.json();
+    const starCard = document.getElementById('star-details');
+
+    if (star) {
+      starCard.innerHTML = `
+        <img src="${star.image}" alt="${star.name}" style="width: 140px; height: 140px; object-fit: cover; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 10px;">
+        <h4 style="font-size: 24px; margin: 5px 0; color: #f1cf96;">${star.name}</h4>
+        <p style="color: var(--gold); font-size: 18px; font-weight: bold;">بمعدل تقييم ⭐ ${star.averageRating} من 5</p>
+      `;
+    } else {
+      starCard.innerHTML = `<p style="color: var(--muted);">لم يتم تحديد نجم الأسبوع بعد.</p>`;
+    }
+
+  } catch (error) {
+    console.error("خطأ في جلب بيانات الباك إند:", error);
+  }
+}
+
+async function rateChair(chairId, rating) {
+  const today = new Date().toISOString().slice(0, 10); // تاريخ اليوم YYYY-MM-DD
+  const lastRates = JSON.parse(localStorage.getItem('chairRates') || '{}');
+
+  // التحقق إن كان قد قيّم نفس الكرسين اليوم
+  if (lastRates[chairId] === today) {
+    alert('لقد قمت بتقييم هذا الكرسين اليوم بالفعل! يمكنك التقييم مجدداً غداً.');
+    return;
+  }
+
+  try {
+    const response = await fetch(`/api/chairs/${chairId}/rate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rating })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(data.message);
+      // حفظ تاريخ اليوم لمنع التكرار
+      lastRates[chairId] = today;
+      localStorage.setItem('chairRates', JSON.stringify(lastRates));
+      loadChairsData(); // تم تحديث التسمية لتتطابق مع الدالة المعرفة أعلاه
+    } else {
+      alert(data.message);
+    }
+  } catch (error) {
+    console.error('Error submitting rating:', error);
+  }
 }
 </script>
 
