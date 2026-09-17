@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 
@@ -13,24 +12,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// إنشاء مجلد التخزين تلقائياً
-const UPLOADS_DIR = path.join(__dirname, 'uploads');
-if (!fs.existsSync(UPLOADS_DIR)) {
-  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
-}
-
-// إعداد Multer لتخزين الصور
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, UPLOADS_DIR),
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
-});
-
-const upload = multer({ storage });
 
 const DATA_FILE = path.join(__dirname, 'chairs.json');
 
@@ -61,19 +42,22 @@ app.get('/api/chairs', (req, res) => {
   res.json(readChairsData());
 });
 
-// 2. إضافة كرسين جديد مع صورة
-app.post('/api/chairs', upload.single('image'), (req, res) => {
+// 2. إضافة كرسين جديد باستخدام رابط الصورة المباشر
+app.post('/api/chairs', (req, res) => {
   try {
-    const { name } = req.body;
-    if (!name || !req.file) {
-      return res.status(400).json({ message: 'يرجى إدخال اسم الكرسين واختيار صورة.' });
+    const { name, image, imageUrl } = req.body;
+    // دعم استقبال اسم الحقل سواء كان image أو imageUrl
+    const finalImage = image || imageUrl;
+
+    if (!name || !finalImage) {
+      return res.status(400).json({ message: 'يرجى إدخال اسم الكرسين ورابط الصورة.' });
     }
 
     const chairs = readChairsData();
     const newChair = {
       id: Date.now(),
       name: name.trim(),
-      image: `/uploads/${req.file.filename}`,
+      image: finalImage.trim(), // رابط الصورة المباشر (https://...)
       ratings: []
     };
 
@@ -149,14 +133,6 @@ app.delete('/api/chairs/:id', (req, res) => {
   const chairId = parseInt(req.params.id);
   let chairs = readChairsData();
 
-  const chairToDelete = chairs.find(c => c.id === chairId);
-  if (chairToDelete && chairToDelete.image && chairToDelete.image.startsWith('/uploads/')) {
-    const imagePath = path.join(__dirname, chairToDelete.image);
-    if (fs.existsSync(imagePath)) {
-      fs.unlinkSync(imagePath);
-    }
-  }
-
   chairs = chairs.filter(c => c.id !== chairId);
   writeChairsData(chairs);
 
@@ -165,7 +141,5 @@ app.delete('/api/chairs/:id', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`☕ السيرفر يعمل على: http://localhost:${PORT}`);
-
-console.log(`👑 رابط لوحة التحكم: http://localhost:${PORT}/admin.html`);
+  console.log(`👑 رابط لوحة التحكم: http://localhost:${PORT}/admin.html`);
 });
-
