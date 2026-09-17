@@ -6,201 +6,85 @@
   <title>لوحة التحكم - قهوة القنطرة</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #1a1a1a;
-      color: #f5f5f5;
-      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
       padding: 20px;
+      text-align: center;
     }
     .container {
-      max-width: 800px;
+      max-width: 500px;
       margin: 0 auto;
-      background: #2a2a2a;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
-    h1, h2 {
-      text-align: center;
-      color: #d4af37;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-    input[type="text"], input[type="file"] {
-      width: 100%;
+    input {
+      width: 90%;
       padding: 10px;
-      border: 1px solid #444;
-      border-radius: 6px;
-      background: #333;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background: #2b2b2b;
       color: #fff;
-      box-sizing: border-box;
     }
     button {
-      width: 100%;
-      padding: 12px;
+      padding: 10px 20px;
       background-color: #d4af37;
-      color: #1a1a1a;
       border: none;
-      border-radius: 6px;
-      font-size: 16px;
+      color: #000;
       font-weight: bold;
+      border-radius: 5px;
       cursor: pointer;
-      transition: 0.3s;
     }
     button:hover {
-      background-color: #f3c623;
-    }
-    .chair-list {
-      margin-top: 30px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 15px;
-    }
-    .chair-card {
-      background: #333;
-      border-radius: 8px;
-      padding: 15px;
-      text-align: center;
-      border: 1px solid #444;
-    }
-    .chair-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-    .delete-btn {
-      background-color: #e74c3c;
-      color: white;
-      padding: 8px;
-      margin-top: 10px;
-    }
-    .delete-btn:hover {
-      background-color: #c0392b;
+      background-color: #f1c40f;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>👑 لوحة تحكم الكراسين</h1>
-    
-    <!-- نموذج إضافة كرسين -->
-    <form id="addChairForm" onsubmit="submitChair(event)">
-      <div class="form-group">
-        <label for="chairNameInput">اسم الكرسين (مثلاً: كرسين البحرة، كرسين الزاوية):</label>
-        <input type="text" id="chairNameInput" placeholder="أدخل اسم الكرسين..." required>
-      </div>
-      
-      <div class="form-group">
-        <label for="chairImageInput">صورة الكرسين:</label>
-        <input type="file" id="chairImageInput" accept="image/*" required>
-      </div>
-      
-      <button type="submit">➕ إضافة الكرسين للموقع</button>
+    <h2>لوحة تحكم الكراسين</h2>
+    <form id="addChairForm">
+      <input type="text" id="chairName" placeholder="اسم الكرسين" required>
+      <!-- حقل الرابط بدلاً من رفع الملف -->
+      <input type="url" id="chairImage" placeholder="رابط الصورة المباشر (https://...)" required>
+      <button type="submit">إضافة الكرسين</button>
     </form>
-
-    <hr style="margin: 30px 0; border-color: #444;">
-
-    <h2>📋 الكراسين المضافة حالياً</h2>
-    <div id="chairsContainer" class="chair-list">
-      <!-- يتم تحميل الكراسين هنا تلقائياً -->
-    </div>
   </div>
 
   <script>
-    // 1. تحميل عرض الكراسين المضافة
-    async function loadAdminChairs() {
-      const container = document.getElementById('chairsContainer');
-      try {
-        const res = await fetch('/api/chairs');
-        const chairs = await res.json();
+    // رابط الباك إند على Render
+    const API_BASE_URL = 'https://caffe-alqantara.onrender.com'; 
 
-        if (chairs.length === 0) {
-          container.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">لا توجد كراسين مضافة بعد.</p>';
-          return;
-        }
-
-        container.innerHTML = chairs.map(chair => `
-          <div class="chair-card">
-            <img src="${chair.image}" alt="${chair.name}">
-            <h3>${chair.name}</h3>
-            <button class="delete-btn" onclick="deleteChair(${chair.id})">🗑️ حذف الكرسين</button>
-          </div>
-        `).join('');
-      } catch (err) {
-        console.error(err);
-        container.innerHTML = '<p style="color:red; text-align:center; grid-column: 1/-1;">حدث خطأ أثناء تحميل الكراسين.</p>';
-      }
-    }
-
-    // 2. إرسال الكرسين الجديد
-    async function submitChair(event) {
-      event.preventDefault();
-
-      const nameInput = document.getElementById('chairNameInput');
-      const imageInput = document.getElementById('chairImageInput');
-
-      if (!nameInput.value.trim() || !imageInput.files[0]) {
-        alert('يرجى كتابة الاسم واختيار الصورة أولاً.');
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('name', nameInput.value.trim());
-      formData.append('image', imageInput.files[0]);
+    document.getElementById('addChairForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('chairName').value;
+      const image = document.getElementById('chairImage').value;
 
       try {
-        const res = await fetch('/api/chairs', {
+        const res = await fetch(`${API_BASE_URL}/api/chairs`, {
           method: 'POST',
-          body: formData
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, image })
         });
 
         const data = await res.json();
 
         if (res.ok) {
-          alert('تمت الإضافة بنجاح!');
-          nameInput.value = '';
-          imageInput.value = '';
-          loadAdminChairs(); // إعادة تحميل القائمة
+          alert('تمت إضافة الكرسين بنجاح!');
+          document.getElementById('addChairForm').reset();
         } else {
-          alert('خطأ: ' + (data.message || 'فشلت عملية الإضافة'));
+          alert(data.message || 'حدث خطأ أثناء الإضافة');
         }
       } catch (err) {
+        alert('تعذر الاتصال بالسيرفر!');
         console.error(err);
-        alert('حدث خطأ أثناء الاتصال بالسيرفر.');
       }
-    }
-
-    // 3. حذف كرسين
-    async function deleteChair(id) {
-      if (!confirm('هل أنت تأكد من إزالة هذا الكرسين؟')) return;
-
-      try {
-        const res = await fetch(`/api/chairs/${id}`, { method: 'DELETE' });
-        const data = await res.json();
-
-        if (res.ok) {
-          alert(data.message);
-          loadAdminChairs();
-        } else {
-          alert('تعذر حذف الكرسين.');
-        }
-      } catch (err) {
-        console.error(err);
-        alert('حدث خطأ أثناء الحذف.');
-      }
-    }
-
-    // تشغيل جلب الكراسين فور فتح الصفحة
-    loadAdminChairs();
+    });
   </script>
 </body>
 </html>
