@@ -4,7 +4,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>قهوة القنطرة | Cafe AL_Qantara</title>
 <meta name="description" content="في القنطرة، القهوة مو بس مشروب… هي جلسة وذكرى. قهوة ذكريات منذ عام 2025.">
-<link rel="icon" href="1000216576.jpg" type="image/jpeg">
 
 <!-- مكتبة حركات التمرير عند النزول لتحت (AOS) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
@@ -488,7 +487,7 @@ h1 {
 
 .card-item h3 { font-family: Amiri, serif; color: var(--gold); font-size: 24px; margin-top: 0; }
 
-/* --- معرض الصور التفاعلي الجديد --- */
+/* --- معرض الصور التفاعلي الجديد (3D Depth + Hover Captions) --- */
 .gallery-scroll-container {
   display: flex;
   gap: 25px;
@@ -522,6 +521,7 @@ h1 {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
   scroll-snap-align: center;
   position: relative;
+  cursor: pointer;
   transform: scale(0.96) rotateY(4deg);
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease, border-color 0.5s ease;
 }
@@ -537,7 +537,6 @@ h1 {
   height: 100%;
   object-fit: cover;
   display: block;
-  pointer-events: none;
   transition: transform 0.6s ease, filter 0.6s ease;
 }
 
@@ -567,7 +566,7 @@ h1 {
 }
 
 /* =========================================================
-   تنسيقات قسم الكراسين المستقرة بدون تعليق
+   تعديلات وتنسيقات قسم الكراسين (السحب على الموبايل والتغطية)
 ========================================================= */
 #chairs-container {
   display: flex;
@@ -576,16 +575,17 @@ h1 {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  scrollbar-width: none; /* إخفاء شريط السحب على Firefox */
 }
 
 #chairs-container::-webkit-scrollbar {
-  display: none;
+  display: none; /* إخفاء شريط السحب على Chrome/Safari */
 }
 
+/* تصميم الكارت ليكون ملوناً بالصورة ومحتوياً للنصوص */
 .chair-card {
   position: relative;
-  flex: 0 0 82%;
+  flex: 0 0 82%; /* على الموبايل يظهر 82% من الكارت ليُعرف أنه قابلا للسحب */
   max-width: 300px;
   height: 380px;
   border-radius: 20px;
@@ -601,6 +601,7 @@ h1 {
   box-sizing: border-box;
 }
 
+/* الصورة تملاء الكارت بالكامل كخلفية */
 .chair-img {
   position: absolute !important;
   top: 0;
@@ -612,9 +613,14 @@ h1 {
   border: none !important;
   border-radius: 0 !important;
   margin-bottom: 0 !important;
-  pointer-events: none; /* إيقاف النقرات على الصورة بالكامل */
+  transition: transform 0.5s ease;
 }
 
+.chair-card:hover .chair-img {
+  transform: scale(1.05);
+}
+
+/* طبقة تظليل سوداء متدرجة لضمان وضوح النصوص والنجوم فوق الصورة */
 .chair-card::after {
   content: "";
   position: absolute;
@@ -624,9 +630,9 @@ h1 {
   height: 80%;
   background: linear-gradient(to top, rgba(12, 7, 4, 0.98) 0%, rgba(12, 7, 4, 0.6) 60%, transparent 100%);
   z-index: 2;
-  pointer-events: none;
 }
 
+/* رفع باقي عناصر الكارت لتظهر فوق الصورة والتظليل */
 .chair-card > *:not(.chair-img) {
   position: relative;
   z-index: 3;
@@ -669,6 +675,7 @@ footer {
   font-size: 14px;
 }
 
+/* شاشات الكمبيوتر والتابلت */
 @media(min-width: 769px) {
   #chairs-container {
     display: grid;
@@ -705,6 +712,7 @@ footer {
   🎵
 </button>
 
+<!-- صوت عود شرقي بمصدر مباشر موثوق مع إعادة تلقائية -->
 <audio id="bgAudio" loop preload="auto">
   <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
 </audio>
@@ -723,7 +731,7 @@ footer {
       <li><a href="#menu">المنيو</a></li>
       <li><a href="#chairs-section">الكراسين ونجم الأسبوع</a></li>
       <li><a href="#about">عن القهوة</a></li>
-      <li><a href="#gallery">✨صنع بسحرك✨</a></li>
+      <li><a href="#gallery">معرض الصور</a></li>
     </ul>
   </div>
 </nav>
@@ -766,12 +774,12 @@ footer {
     <!-- قسم الأكثر طلباً -->
     <div class="featured-grid">
       <div class="featured-card" data-aos="fade-right" data-aos-duration="600">
-        <span class="featured-badge">🧉 الأكثر طلباً</span>
-        <h4>مته</h4>
+        <span class="featured-badge">⭐ الأكثر طلباً</span>
+        <h4>كريب القنطرة</h4>
       </div>
       <div class="featured-card" data-aos="fade-up" data-aos-duration="600">
-        <span class="featured-badge"> ⭐مميز</span>
-        <h4>كريب القنطرة</h4>
+        <span class="featured-badge">☕ مميز</span>
+        <h4>شاي كرك</h4>
       </div>
       <div class="featured-card" data-aos="fade-left" data-aos-duration="600">
         <span class="featured-badge">💨 فاخر</span>
@@ -965,7 +973,7 @@ footer {
         <div class="category-body">
           <div class="items">
             <div class="item-card"><span>سلطة نوتيلا</span></div>
-            <div class="item-card"><span>قشطة</span></div>
+            <div class="item-card"><span>قنة</span></div>
             <div class="item-card"><span>مكسرات و عسل</span></div>
             <div class="item-card"><span>بنانشو</span></div>
             <div class="item-card"><span>لوتس</span></div>
@@ -1020,7 +1028,7 @@ footer {
       <div class="category" data-aos="fade-left" data-aos-duration="600">
         <button class="category-head" onclick="toggleCategory(this)">
           <div class="category-icon">🔒</div>
-          <div class="category-title">قفل وذكريات</div>
+          <div class="category-title">قفل وكريات</div>
           <div class="category-count">4 أحجام</div>
           <div class="plus">+</div>
         </button>
@@ -1037,7 +1045,7 @@ footer {
     </div>
   </section>
 
-  <!-- --- قسم الكراسين ونجم الأسبوع --- -->
+  <!-- --- قسم الكراسين ونجم الأسبوع (الجديد) --- -->
   <section id="chairs-section">
     <div class="section-head" data-aos="fade-up" data-aos-duration="600">
       <span class="eyebrow">WEEKLY STAR & VOTING</span>
@@ -1054,7 +1062,7 @@ footer {
 
     <!-- شبكة الكراسين مع إمكانية التقييم -->
     <div class="grid-cards" id="chairs-container" data-aos="fade-up">
-      <!-- يتم تحميل الكراسين عبر JavaScript -->
+      <!-- يتم تحميل الكراسين من الباك إند عبر JavaScript تلقائياً -->
     </div>
   </section>
 
@@ -1080,16 +1088,16 @@ footer {
   <section id="gallery">
     <div class="section-head" data-aos="fade-up" data-aos-duration="600">
       <span class="eyebrow">GALLERY</span>
-      <h2>✨صنع بسحرك✨</h2>
+      <h2>معرض الصور</h2>
     </div>
     <div class="gallery-scroll-container" data-aos="fade-up" data-aos-duration="600">
       <div class="gallery-item">
         <img src="1000218585.jpg" alt="طاجن فواكه القنطرة">
-        <div class="gallery-caption">  عصير بولو منعش</div>
+        <div class="gallery-caption">طاجن فواكه القنطرة</div>
       </div>
       <div class="gallery-item">
         <img src="1000218586.jpg" alt="عصير نعنع وليمون بولو">
-        <div class="gallery-caption">طاجن فواكه القنطرة</div>
+        <div class="gallery-caption">عصير بولو منعش</div>
       </div>
       <div class="gallery-item">
         <img src="1000218584.jpg" alt="كريب القنطرة المميز">
@@ -1103,11 +1111,10 @@ footer {
   </footer>
 </div>
 
+<!-- مكتبة حركات التمرير عند النزول -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 <script>
-const API_BASE_URL = "https://caffe-alqantara-xkie.onrender.com"; 
-
 window.addEventListener('load', () => {
   AOS.init({
     once: false,
@@ -1125,7 +1132,7 @@ window.addEventListener('load', () => {
   setDayNightMode();
   setDailyBanner();
   initAudioAuto();
-  loadChairsData();
+  loadChairsData(); // جلب الكراسين ونجم الأسبوع عند التحميل
 });
 
 let audioStarted = false;
@@ -1144,6 +1151,7 @@ function initAudioAuto() {
 
   document.addEventListener('click', startAudio, { once: true });
   document.addEventListener('touchstart', startAudio, { once: true });
+  document.addEventListener('scroll', startAudio, { once: true });
 }
 
 function toggleAudio() {
@@ -1189,7 +1197,7 @@ function setDailyBanner() {
   const banner = document.getElementById('dailyBanner');
   
   const messages = {
-    5: "🌿 عطلة أسبوع سعيدة! استمتع بأحلى الأوقات مع عائلتك وأصدقائك بقهوة القنطرة ☕",
+    5: "✨ جمعة مباركة بأجوائها الدافئة... قهوة القنطرة بانتظاركم بعد الصلاة ✨",
     4: "🎶 خميسكم غير في القنطرة... صحبة حلوة، عود، وأركيلة بفنجان قهوة ☕",
     6: "🌿 عطلة أسبوع سعيدة! استمتع بأحلى الأوقات مع عائلتك وأصدقائك بقهوة القنطرة ☕"
   };
@@ -1257,14 +1265,15 @@ function suggestDrink() {
   alert("🎲 اقتراح القنطرة لك اليوم هو:\n\n✨ " + randomItem + " ✨\n\nنتمنى لك أوقاتاً ممتعة معنا!");
 }
 
-/* --- وظائف جلب الكراسين ونجم الأسبوع بدون أحداث فتح الصورة --- */
+/* --- وظائف الباك إند لتفعيل الكراسين ونجم الأسبوع --- */
 async function loadChairsData() {
   try {
-    const resChairs = await fetch(`${API_BASE_URL}/api/chairs`);
+    // 1. جلب قائمة الكراسين
+    const resChairs = await fetch('/api/chairs');
     const chairs = await resChairs.json();
     
     const container = document.getElementById('chairs-container');
-    if (!chairs || chairs.length === 0) {
+    if (chairs.length === 0) {
       container.innerHTML = '<p style="grid-column: 1/-1;">لا يوجد كراسين مضافة حالياً.</p>';
     } else {
       container.innerHTML = chairs.map(chair => {
@@ -1291,13 +1300,14 @@ async function loadChairsData() {
       }).join('');
     }
 
-    const resStar = await fetch(`${API_BASE_URL}/api/weekly-star`);
+    // 2. جلب نجم الأسبوع
+    const resStar = await fetch('/api/weekly-star');
     const star = await resStar.json();
     const starCard = document.getElementById('star-details');
 
     if (star) {
       starCard.innerHTML = `
-        <img src="${star.image}" alt="${star.name}" style="width: 140px; height: 140px; object-fit: cover; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 10px; pointer-events: none;">
+        <img src="${star.image}" alt="${star.name}" style="width: 140px; height: 140px; object-fit: cover; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 10px;">
         <h4 style="font-size: 24px; margin: 5px 0; color: #f1cf96;">${star.name}</h4>
         <p style="color: var(--gold); font-size: 18px; font-weight: bold;">بمعدل تقييم ⭐ ${star.averageRating} من 5</p>
       `;
@@ -1305,23 +1315,23 @@ async function loadChairsData() {
       starCard.innerHTML = `<p style="color: var(--muted);">لم يتم تحديد نجم الأسبوع بعد.</p>`;
     }
 
-    AOS.refresh();
   } catch (error) {
     console.error("خطأ في جلب بيانات الباك إند:", error);
   }
 }
 
 async function rateChair(chairId, rating) {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = new Date().toISOString().slice(0, 10); // تاريخ اليوم YYYY-MM-DD
   const lastRates = JSON.parse(localStorage.getItem('chairRates') || '{}');
 
+  // التحقق إن كان قد قيّم نفس الكرسين اليوم
   if (lastRates[chairId] === today) {
     alert('لقد قمت بتقييم هذا الكرسين اليوم بالفعل! يمكنك التقييم مجدداً غداً.');
     return;
   }
 
   try {
-    const response = await fetch(`${API_BASE_URL}/api/chairs/${chairId}/rate`, {
+    const response = await fetch(`/api/chairs/${chairId}/rate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ rating })
@@ -1330,12 +1340,13 @@ async function rateChair(chairId, rating) {
     const data = await response.json();
 
     if (response.ok) {
-      alert(data.message);
+      alert(data.message || 'تم إرسال تقييمك بنجاح!');
+      // حفظ تاريخ اليوم لمنع التكرار
       lastRates[chairId] = today;
       localStorage.setItem('chairRates', JSON.stringify(lastRates));
       loadChairsData();
     } else {
-      alert(data.message);
+      alert(data.message || 'حدث خطأ أثناء إرسال التقييم');
     }
   } catch (error) {
     console.error('Error submitting rating:', error);
