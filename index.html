@@ -1,6 +1,5 @@
 <html lang="ar" dir="rtl">
 <head>
-  <link rel="shortcut icon" href="#">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>قهوة القنطرة | Cafe AL_Qantara</title>
@@ -576,17 +575,16 @@ h1 {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* إخفاء شريط السحب على Firefox */
+  scrollbar-width: none;
 }
 
 #chairs-container::-webkit-scrollbar {
-  display: none; /* إخفاء شريط السحب على Chrome/Safari */
+  display: none;
 }
 
-/* تصميم الكارت ليكون ملوناً بالصورة ومحتوياً للنصوص */
 .chair-card {
   position: relative;
-  flex: 0 0 82%; /* على الموبايل يظهر 82% من الكارت ليُعرف أنه قابلا للسحب */
+  flex: 0 0 82%;
   max-width: 300px;
   height: 380px;
   border-radius: 20px;
@@ -602,7 +600,6 @@ h1 {
   box-sizing: border-box;
 }
 
-/* الصورة تملاء الكارت بالكامل كخلفية */
 .chair-img {
   position: absolute !important;
   top: 0;
@@ -621,7 +618,6 @@ h1 {
   transform: scale(1.05);
 }
 
-/* طبقة تظليل سوداء متدرجة لضمان وضوح النصوص والنجوم فوق الصورة */
 .chair-card::after {
   content: "";
   position: absolute;
@@ -633,7 +629,6 @@ h1 {
   z-index: 2;
 }
 
-/* رفع باقي عناصر الكارت لتظهر فوق الصورة والتظليل */
 .chair-card > *:not(.chair-img) {
   position: relative;
   z-index: 3;
@@ -676,7 +671,6 @@ footer {
   font-size: 14px;
 }
 
-/* شاشات الكمبيوتر والتابلت */
 @media(min-width: 769px) {
   #chairs-container {
     display: grid;
@@ -1046,7 +1040,7 @@ footer {
     </div>
   </section>
 
-  <!-- --- قسم الكراسين ونجم الأسبوع (الجديد) --- -->
+  <!-- --- قسم الكراسين ونجم الأسبوع --- -->
   <section id="chairs-section">
     <div class="section-head" data-aos="fade-up" data-aos-duration="600">
       <span class="eyebrow">WEEKLY STAR & VOTING</span>
@@ -1116,6 +1110,13 @@ footer {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 <script>
+// ==========================================
+// 🔴 متغير رابط السيرفر (تعديل مهم)
+// اتركه فارغاً إذا كان السيرفر والواجهة مرفوعين معاً بنفس الدومين
+// أو ضع رابط سيرفر Render / Railway المرفوع عليه Express
+// ==========================================
+const API_BASE_URL = ""; 
+
 window.addEventListener('load', () => {
   AOS.init({
     once: false,
@@ -1133,7 +1134,7 @@ window.addEventListener('load', () => {
   setDayNightMode();
   setDailyBanner();
   initAudioAuto();
-  loadChairsData(); // جلب الكراسين ونجم الأسبوع عند التحميل
+  loadChairsData();
 });
 
 let audioStarted = false;
@@ -1150,9 +1151,9 @@ function initAudioAuto() {
     }
   };
 
+  // حُذف حدث السكرول لتفادي حظر المتصفحات للتشغيل التلقائي
   document.addEventListener('click', startAudio, { once: true });
   document.addEventListener('touchstart', startAudio, { once: true });
-  document.addEventListener('scroll', startAudio, { once: true });
 }
 
 function toggleAudio() {
@@ -1269,12 +1270,12 @@ function suggestDrink() {
 /* --- وظائف الباك إند لتفعيل الكراسين ونجم الأسبوع --- */
 async function loadChairsData() {
   try {
-    // 1. جلب قائمة الكراسين
-    const resChairs = await fetch('/api/chairs');
+    // 1. جلب قائمة الكراسين مع المسار الكامل
+    const resChairs = await fetch(`${API_BASE_URL}/api/chairs`);
     const chairs = await resChairs.json();
     
     const container = document.getElementById('chairs-container');
-    if (chairs.length === 0) {
+    if (!chairs || chairs.length === 0) {
       container.innerHTML = '<p style="grid-column: 1/-1;">لا يوجد كراسين مضافة حالياً.</p>';
     } else {
       container.innerHTML = chairs.map(chair => {
@@ -1302,7 +1303,7 @@ async function loadChairsData() {
     }
 
     // 2. جلب نجم الأسبوع
-    const resStar = await fetch('/api/weekly-star');
+    const resStar = await fetch(`${API_BASE_URL}/api/weekly-star`);
     const star = await resStar.json();
     const starCard = document.getElementById('star-details');
 
@@ -1322,17 +1323,16 @@ async function loadChairsData() {
 }
 
 async function rateChair(chairId, rating) {
-  const today = new Date().toISOString().slice(0, 10); // تاريخ اليوم YYYY-MM-DD
+  const today = new Date().toISOString().slice(0, 10);
   const lastRates = JSON.parse(localStorage.getItem('chairRates') || '{}');
 
-  // التحقق إن كان قد قيّم نفس الكرسين اليوم
   if (lastRates[chairId] === today) {
     alert('لقد قمت بتقييم هذا الكرسين اليوم بالفعل! يمكنك التقييم مجدداً غداً.');
     return;
   }
 
   try {
-    const response = await fetch(`/api/chairs/${chairId}/rate`, {
+    const response = await fetch(`${API_BASE_URL}/api/chairs/${chairId}/rate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ rating })
@@ -1342,10 +1342,9 @@ async function rateChair(chairId, rating) {
 
     if (response.ok) {
       alert(data.message);
-      // حفظ تاريخ اليوم لمنع التكرار
       lastRates[chairId] = today;
       localStorage.setItem('chairRates', JSON.stringify(lastRates));
-      loadChairsData(); // تم تحديث التسمية لتتطابق مع الدالة المعرفة أعلاه
+      loadChairsData();
     } else {
       alert(data.message);
     }
