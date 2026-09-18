@@ -123,7 +123,7 @@
     async function loadAdminChairs() {
       const container = document.getElementById('chairsContainer');
       try {
-        const res = await fetch(`${API_BASE_URL}/api/chairs`);
+        const res = await fetch(`https://caffe-alqantara.onrender.com/api/chairs`);
         const chairs = await res.json();
 
         if (!chairs || chairs.length === 0) {
@@ -160,7 +160,7 @@
       }
 
       try {
-        const res = await fetch(`${API_BASE_URL}/api/chairs`, {
+        const res = await fetch(`https://caffe-alqantara.onrender.com/api/chairs`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -189,7 +189,7 @@
       if (!confirm('هل أنت متأكد من إزالة هذا الكرسين؟')) return;
 
       try {
-        const res = await fetch(`${API_BASE_URL}/api/chairs/${id}`, { method: 'DELETE' });
+        const res = await fetch(`https://caffe-alqantara.onrender.com/api/chairs/${id}`, { method: 'DELETE' });
         const data = await res.json();
 
         if (res.ok) {
