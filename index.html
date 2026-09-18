@@ -1269,7 +1269,7 @@ function suggestDrink() {
 async function loadChairsData() {
   try {
     // 1. جلب قائمة الكراسين
-    const resChairs = await fetch('/api/chairs');
+    const resChairs = await fetch('https://caffe-alqantara.onrender.com/api/chairs');
     const chairs = await resChairs.json();
     
     const container = document.getElementById('chairs-container');
@@ -1301,7 +1301,7 @@ async function loadChairsData() {
     }
 
     // 2. جلب نجم الأسبوع
-    const resStar = await fetch('/api/weekly-star');
+    const resStar = await fetch('https://caffe-alqantara.onrender.com/api/weekly-star');
     const star = await resStar.json();
     const starCard = document.getElementById('star-details');
 
@@ -1331,7 +1331,7 @@ async function rateChair(chairId, rating) {
   }
 
   try {
-    const response = await fetch(`/api/chairs/${chairId}/rate`, {
+    const response = await fetch(`https://caffe-alqantara.onrender.com/api/chairs/${chairId}/rate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ rating })
